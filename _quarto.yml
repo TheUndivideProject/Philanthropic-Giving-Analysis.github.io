@@ -1,7 +1,7 @@
 project:
   type: website
   output-dir: docs
-  
+
 website:
   title: "Philanthropic Giving Analysis"
   navbar:
@@ -11,7 +11,7 @@ website:
       - text: Data Exploration
         menu:
           - text: eo1 data
-            href: ./reports/data_exploration_ex.html
+            href: data_exploration/data_exploration_ex.html
     tools:
       - icon: twitter
         href: https://twitter.com
