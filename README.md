@@ -15,9 +15,19 @@ The goal of this project is to build accountability and transparency in philanth
 
 ## Repository Structure
 
-- `data_preprocessing/`: Contains scripts and notebooks for cleaning and preparing the data for analysis.
-- `data_exploration/`: Includes notebooks and scripts used to explore the data, identifying patterns and initial insights.
-- `reports/`: Documentation of findings and analysis reports intended for publication and sharing with stakeholders.
+- `data/`: Contains raw data meant for preprocessing and analysis.
+- `website/`: Contains all Quarto source documents and related content for the website.
+  - `.quarto/`: Quarto configuration files and resources specific to Quarto.
+  - `data_exploration/`: Jupyter notebooks or Quarto documents related to the data exploration phase.
+  - `data_preprocessing/`: Jupyter notebooks or Quarto documents for data preprocessing steps.
+  - `docs/`: The output directory where the generated HTML files are stored, ready to be served by GitHub Pages.
+  - `index_files/`: Supporting files for the `index.ipynb`, typically including assets such as images or datasets used within the notebook.
+  - `_quarto.yml`: The main Quarto configuration file that specifies how the project should be built.
+  - `.gitignore`: Git configuration file that specifies untracked files and directories that should not be added to the repository.
+  - `index.ipynb`: The Jupyter notebook that acts as the main entry point for the Quarto website.
+  - `styles.css`: Custom CSS styles applied across the website.
+  - `.nojekyll`: A file that tells GitHub Pages to bypass Jekyll processing on this repository.
+
 
 ## Getting Started
 
