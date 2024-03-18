@@ -1,9 +1,9 @@
 project:
   type: website
-
+  output-dir: docs
+  
 website:
   title: "Philanthropic Giving Analysis"
-  output-dir: docs
   navbar:
     left:
       - text: Home
