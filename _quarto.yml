@@ -3,6 +3,7 @@ project:
 
 website:
   title: "Philanthropic Giving Analysis"
+  output-dir: docs
   navbar:
     left:
       - text: Home
