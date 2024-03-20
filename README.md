@@ -4,7 +4,7 @@ This repository is dedicated to conducting a comprehensive analysis of existing 
 
 ## Project Overview
 
-The goal of this project is to build accountability and transparency in philanthropic giving to environmental and social justice causes. We explore and clean the data collected by our nonprofit organization to uncover insights into the allocation and impact of funds in this sector.
+The goal of this project is to analyze accountability and transparency in philanthropic giving to environmental and social justice causes. We explore and clean the data collected by our nonprofit organization to uncover insights into the allocation and impact of funds in this sector.
 
 ### Objectives
 
