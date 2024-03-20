@@ -10,16 +10,23 @@ website:
         href: index.html
       - text: Data Exploration
         menu:
-          - text: eo1 data
+          - text: Exempt Organizations Business Master File Data
             href: data_exploration/data_exploration_ex.html
-    tools:
+    right:
       - icon: twitter
-        href: https://twitter.com
+        href: http://linktr.ee/theundivide
       - icon: github
         href: https://github.com/TheUndivideProject
+        aria-label: GitHub
+
+  page-footer:
+    right: |
+      Made with [Quarto](https://quarto.org/)<br>
 
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
+
+
