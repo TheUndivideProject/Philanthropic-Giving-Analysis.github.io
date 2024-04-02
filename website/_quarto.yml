@@ -16,6 +16,8 @@ website:
             href: data_exploration/form_990_exploration.html
           - text: Form 990ez Data
             href: data_exploration/form_990ez_exploration.html
+          - text: Split Interest Trust Data
+            href: data_exploration/split_interest_trust.html
     right:
       - icon: twitter
         href: http://linktr.ee/theundivide
