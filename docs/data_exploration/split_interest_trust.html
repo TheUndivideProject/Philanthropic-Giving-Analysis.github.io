@@ -4118,7 +4118,7 @@ vertical-align: -.125em;
 <h1>2. First Glance</h1>
 <section id="general-summary" class="level2">
 <h2 class="anchored" data-anchor-id="general-summary">2.1. General Summary</h2>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="12">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Libraries for data manipulation.</span></span>
@@ -4181,7 +4181,7 @@ vertical-align: -.125em;
 <span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>display(Markdown(metadata_markdown))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/79/jdv69xcs22z7cyxln5rsbzzh0000gn/T/ipykernel_57096/183015497.py:21: DtypeWarning: Columns (168,191,192,249,269) have mixed types. Specify dtype option on import or set low_memory=False.
+<pre><code>/var/folders/79/jdv69xcs22z7cyxln5rsbzzh0000gn/T/ipykernel_29601/183015497.py:21: DtypeWarning: Columns (168,191,192,249,269) have mixed types. Specify dtype option on import or set low_memory=False.
   split_interest = pd.read_csv(&#39;../../data/sit-2020.csv&#39;)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -8350,7 +8350,7 @@ vertical-align: -.125em;
 <section id="data-preparation" class="level1">
 <h1>3. Data Preparation</h1>
 <p>In this section, we detail the initial steps taken to prepare the split interest trust data from the IRS for analysis. Our goals are to ensure consistency in column naming, handle missing values appropriately, and convert data into formats that are suitable for our analytical needs. Please click the drop down arrow for more details on code used to achieve this.</p>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="13">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize column names.</span></span>
@@ -8361,17 +8361,21 @@ vertical-align: -.125em;
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace NaN with appropriate values accordingly.</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert columns to appropriate data types.</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop duplicates.</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert dtype for appropriate columns.</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>split_interest[<span class="st">&#39;ein&#39;</span>] <span class="op">=</span> split_interest[<span class="st">&#39;ein&#39;</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.replace(<span class="st">&#39;\.0$&#39;</span>, <span class="st">&#39;&#39;</span>, regex<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Show cleaned data.</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>head_caption <span class="op">=</span> <span class="st">&quot;Cleaned data sample view:&quot;</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>head_df <span class="op">=</span> split_interest.head().copy()</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>head_markdown <span class="op">=</span> head_caption <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span> <span class="op">+</span> head_df.to_markdown(index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>display(Markdown(head_markdown))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>date_cols <span class="op">=</span> [<span class="st">&#39;established_prd&#39;</span>,<span class="st">&#39;ruling_prd&#39;</span>,<span class="st">&#39;curr_status_prd&#39;</span>]</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> date_cols:</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    split_interest[col] <span class="op">=</span> split_interest[col].astype(<span class="bu">str</span>).<span class="bu">str</span>.replace(<span class="st">&#39;\.0$&#39;</span>, <span class="st">&#39;&#39;</span>, regex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    split_interest[col] <span class="op">=</span> pd.to_datetime(split_interest[col], <span class="bu">format</span><span class="op">=</span><span class="st">&#39;%Y%m&#39;</span>, errors<span class="op">=</span><span class="st">&#39;coerce&#39;</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop duplicates.</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert dtype for appropriate columns.</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>split_interest[<span class="st">&#39;ein&#39;</span>] <span class="op">=</span> split_interest[<span class="st">&#39;ein&#39;</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.replace(<span class="st">&#39;\.0$&#39;</span>, <span class="st">&#39;&#39;</span>, regex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Show cleaned data.</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>head_caption <span class="op">=</span> <span class="st">&quot;Cleaned data sample view:&quot;</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>head_df <span class="op">=</span> split_interest.head().copy()</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>head_markdown <span class="op">=</span> head_caption <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span> <span class="op">+</span> head_df.to_markdown(index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>display(Markdown(head_markdown))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p>Cleaned data sample view:</p>
@@ -8697,7 +8701,7 @@ vertical-align: -.125em;
 <tr class="header">
 <th style="text-align: right;">primary_tin_typ_cd</th>
 <th style="text-align: right;">ein</th>
-<th style="text-align: right;">established_prd</th>
+<th style="text-align: left;">established_prd</th>
 <th style="text-align: left;">check_digit_cd</th>
 <th style="text-align: left;">name_cntrl_cd</th>
 <th style="text-align: right;">coll_loc_cd</th>
@@ -8953,7 +8957,7 @@ vertical-align: -.125em;
 <th style="text-align: right;">classification_cd</th>
 <th style="text-align: right;">organizing_dt</th>
 <th style="text-align: right;">registration_dt</th>
-<th style="text-align: right;">ruling_prd</th>
+<th style="text-align: left;">ruling_prd</th>
 <th style="text-align: right;">deduct_cd</th>
 <th style="text-align: right;">deduct_yr</th>
 <th style="text-align: right;">curr_foundation_cd</th>
@@ -8972,7 +8976,7 @@ vertical-align: -.125em;
 <th style="text-align: right;">income_cd</th>
 <th style="text-align: right;">rtn_tax_yr</th>
 <th style="text-align: right;">curr_status_cd</th>
-<th style="text-align: right;">curr_status_prd</th>
+<th style="text-align: left;">curr_status_prd</th>
 <th style="text-align: right;">prior_status_cd</th>
 <th style="text-align: right;">prior_status_prd</th>
 <th style="text-align: right;">zip_9_cd</th>
@@ -9016,7 +9020,7 @@ vertical-align: -.125em;
 <tr class="odd">
 <td style="text-align: right;">2</td>
 <td style="text-align: right;">2001555</td>
-<td style="text-align: right;">197112</td>
+<td style="text-align: left;">1971-12-01 00:00:00</td>
 <td style="text-align: left;">UI</td>
 <td style="text-align: left;">OAKE</td>
 <td style="text-align: right;">0</td>
@@ -9272,7 +9276,7 @@ vertical-align: -.125em;
 <td style="text-align: right;">1000</td>
 <td style="text-align: right;">nan</td>
 <td style="text-align: right;">nan</td>
-<td style="text-align: right;">197012</td>
+<td style="text-align: left;">1970-12-01 00:00:00</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
@@ -9291,7 +9295,7 @@ vertical-align: -.125em;
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1970</td>
 <td style="text-align: right;">12</td>
-<td style="text-align: right;">197305</td>
+<td style="text-align: left;">1973-05-01 00:00:00</td>
 <td style="text-align: right;">nan</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">44015108</td>
@@ -9333,7 +9337,7 @@ vertical-align: -.125em;
 <tr class="even">
 <td style="text-align: right;">2</td>
 <td style="text-align: right;">2032809</td>
-<td style="text-align: right;">197606</td>
+<td style="text-align: left;">1976-06-01 00:00:00</td>
 <td style="text-align: left;">SJ</td>
 <td style="text-align: left;">HISP</td>
 <td style="text-align: right;">0</td>
@@ -9589,7 +9593,7 @@ vertical-align: -.125em;
 <td style="text-align: right;">1000</td>
 <td style="text-align: right;">nan</td>
 <td style="text-align: right;">nan</td>
-<td style="text-align: right;">197605</td>
+<td style="text-align: left;">1976-05-01 00:00:00</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
@@ -9608,7 +9612,7 @@ vertical-align: -.125em;
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">12</td>
-<td style="text-align: right;">197605</td>
+<td style="text-align: left;">1976-05-01 00:00:00</td>
 <td style="text-align: right;">nan</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">100192701</td>
@@ -9650,7 +9654,7 @@ vertical-align: -.125em;
 <tr class="odd">
 <td style="text-align: right;">2</td>
 <td style="text-align: right;">2126212</td>
-<td style="text-align: right;">197710</td>
+<td style="text-align: left;">1977-10-01 00:00:00</td>
 <td style="text-align: left;">KT</td>
 <td style="text-align: left;">BONT</td>
 <td style="text-align: right;">0</td>
@@ -9906,7 +9910,7 @@ vertical-align: -.125em;
 <td style="text-align: right;">1000</td>
 <td style="text-align: right;">nan</td>
 <td style="text-align: right;">nan</td>
-<td style="text-align: right;">197710</td>
+<td style="text-align: left;">1977-10-01 00:00:00</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
@@ -9925,7 +9929,7 @@ vertical-align: -.125em;
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">1981</td>
 <td style="text-align: right;">12</td>
-<td style="text-align: right;">197710</td>
+<td style="text-align: left;">1977-10-01 00:00:00</td>
 <td style="text-align: right;">nan</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">468020000</td>
@@ -9967,7 +9971,7 @@ vertical-align: -.125em;
 <tr class="even">
 <td style="text-align: right;">2</td>
 <td style="text-align: right;">2190092</td>
-<td style="text-align: right;">197112</td>
+<td style="text-align: left;">1971-12-01 00:00:00</td>
 <td style="text-align: left;">CU</td>
 <td style="text-align: left;">JARV</td>
 <td style="text-align: right;">0</td>
@@ -10223,7 +10227,7 @@ vertical-align: -.125em;
 <td style="text-align: right;">1000</td>
 <td style="text-align: right;">nan</td>
 <td style="text-align: right;">nan</td>
-<td style="text-align: right;">197012</td>
+<td style="text-align: left;">1970-12-01 00:00:00</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
@@ -10242,7 +10246,7 @@ vertical-align: -.125em;
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1970</td>
 <td style="text-align: right;">12</td>
-<td style="text-align: right;">197308</td>
+<td style="text-align: left;">1973-08-01 00:00:00</td>
 <td style="text-align: right;">nan</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">100202302</td>
@@ -10284,7 +10288,7 @@ vertical-align: -.125em;
 <tr class="odd">
 <td style="text-align: right;">2</td>
 <td style="text-align: right;">2209021</td>
-<td style="text-align: right;">197903</td>
+<td style="text-align: left;">1979-03-01 00:00:00</td>
 <td style="text-align: left;">WQ</td>
 <td style="text-align: left;">HAMM</td>
 <td style="text-align: right;">0</td>
@@ -10540,7 +10544,7 @@ vertical-align: -.125em;
 <td style="text-align: right;">1000</td>
 <td style="text-align: right;">nan</td>
 <td style="text-align: right;">nan</td>
-<td style="text-align: right;">0</td>
+<td style="text-align: left;">NaT</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
@@ -10559,7 +10563,7 @@ vertical-align: -.125em;
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">1977</td>
 <td style="text-align: right;">12</td>
-<td style="text-align: right;">198207</td>
+<td style="text-align: left;">1982-07-01 00:00:00</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">198201</td>
 <td style="text-align: right;">273490000</td>
@@ -10620,29 +10624,25 @@ vertical-align: -.125em;
 <div class="cell" data-execution_count="4">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>split_interest.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>Index([&#39;primary_tin_typ_cd&#39;, &#39;ein&#39;, &#39;established_prd&#39;, &#39;check_digit_cd&#39;,
-       &#39;name_cntrl_cd&#39;, &#39;coll_loc_cd&#39;, &#39;ulc_cd&#39;, &#39;mf_ao_cd&#39;, &#39;small_bus_ao_cd&#39;,
-       &#39;primary_zip_cd&#39;,
-       ...
-       &#39;nmbr_before&#39;, &#39;nmbr_after&#39;, &#39;name_9dig&#39;, &#39;ico_9dig&#39;, &#39;sort_name_9dig&#39;,
-       &#39;street_9dig&#39;, &#39;dig9_name&#39;, &#39;dig9_ico&#39;, &#39;dig9_sortname&#39;, &#39;dig9_street&#39;],
-      dtype=&#39;object&#39;, length=315)</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="5">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_head(df, columns, caption):</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    head_df <span class="op">=</span> df[columns].head()</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    head_markdown <span class="op">=</span> <span class="ss">f&quot;</span><span class="sc">{</span>caption<span class="sc">}</span><span class="ch">\n\n</span><span class="sc">{</span>head_df<span class="sc">.</span>to_markdown(index<span class="op">=</span><span class="va">False</span>)<span class="sc">}</span><span class="ss">&quot;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    display(Markdown(head_markdown))</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_unique_values(df, columns, caption):</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    unique_val_df <span class="op">=</span> df[columns].value_counts().reset_index()</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    uni_markdown <span class="op">=</span> <span class="ss">f&quot;</span><span class="sc">{</span>caption<span class="sc">}</span><span class="ch">\n\n</span><span class="sc">{</span>unique_val_df<span class="sc">.</span>to_markdown(index<span class="op">=</span><span class="va">False</span>)<span class="sc">}</span><span class="ss">&quot;</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    display(Markdown(uni_markdown))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_head(df, columns, caption):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    head_df <span class="op">=</span> df[columns].head()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    head_markdown <span class="op">=</span> <span class="ss">f&quot;</span><span class="sc">{</span>caption<span class="sc">}</span><span class="ch">\n\n</span><span class="sc">{</span>head_df<span class="sc">.</span>to_markdown(index<span class="op">=</span><span class="va">False</span>)<span class="sc">}</span><span class="ss">&quot;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    display(Markdown(head_markdown))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_unique_values(df, columns):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    unique_val_df <span class="op">=</span> df[columns].value_counts().reset_index()</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    uni_markdown <span class="op">=</span> <span class="ss">f&quot;</span><span class="sc">{</span>unique_val_df<span class="sc">.</span>to_markdown(index<span class="op">=</span><span class="va">False</span>)<span class="sc">}</span><span class="ss">&quot;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    display(Markdown(uni_markdown))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_missing_cts(df, columns):</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    missing_values <span class="op">=</span> df[columns].isna().<span class="bu">sum</span>().reset_index()</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    missing_markdown <span class="op">=</span> <span class="ss">f&quot;</span><span class="sc">{</span>missing_values<span class="sc">.</span>rename(columns<span class="op">=</span>{<span class="st">&#39;index&#39;</span>:<span class="st">&#39;column name&#39;</span>,<span class="dv">0</span>:<span class="st">&#39;missing data points&#39;</span>})<span class="sc">.</span>to_markdown(index<span class="op">=</span><span class="va">False</span>)<span class="sc">}</span><span class="ss">&quot;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    display(Markdown(missing_markdown))</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_stats(df, columns):</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    stats <span class="op">=</span> df[columns].describe().reset_index()</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col <span class="kw">in</span> stats.columns[<span class="dv">1</span>:]:  </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> df[col].dtype <span class="op">==</span> <span class="st">&#39;float64&#39;</span> <span class="kw">or</span> df[col].dtype <span class="op">==</span> <span class="st">&#39;float32&#39;</span>:</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>            stats[col] <span class="op">=</span> stats[col].astype(<span class="bu">float</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:,</span><span class="fl">.0</span><span class="er">f</span><span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    stats_markdown <span class="op">=</span> stats.rename(columns<span class="op">=</span>{<span class="st">&#39;index&#39;</span>: <span class="st">&#39;Statistics&#39;</span>}).to_markdown(index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    display(Markdown(stats_markdown))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -10653,53 +10653,96 @@ vertical-align: -.125em;
 <li>asset_amt: The amount of assets the trust holds. This information can help gauge the size and potential impact of the trust.</li>
 <li>income_amt: The income amount can offer insights into the financial capacity and activity level of the trust within a given period.</li>
 </ul>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="6">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [<span class="st">&#39;ein&#39;</span>,<span class="st">&#39;fr_5227_cd&#39;</span>,<span class="st">&#39;asset_amt&#39;</span>,<span class="st">&#39;income_amt&#39;</span>]</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>display_head(split_interest, columns, <span class="st">&quot;Example of financial and charitable contribution data:&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>unique_columns <span class="op">=</span> [<span class="st">&#39;fr_5227_cd&#39;</span>,<span class="st">&#39;asset_amt&#39;</span>,<span class="st">&#39;income_amt&#39;</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>display_stats(split_interest, unique_columns)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>display_missing_cts(split_interest, unique_columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p>Example of financial and charitable contribution data:</p>
 <table class="table table-sm table-striped">
 <thead>
 <tr class="header">
-<th style="text-align: right;">ein</th>
+<th style="text-align: left;">Statistics</th>
 <th style="text-align: right;">fr_5227_cd</th>
-<th style="text-align: right;">asset_amt</th>
-<th style="text-align: right;">income_amt</th>
+<th style="text-align: left;">asset_amt</th>
+<th style="text-align: left;">income_amt</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">2001555</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">nan</td>
-<td style="text-align: right;">nan</td>
+<td style="text-align: left;">count</td>
+<td style="text-align: right;">92186</td>
+<td style="text-align: left;">79,259</td>
+<td style="text-align: left;">79,259</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">2032809</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">nan</td>
-<td style="text-align: right;">nan</td>
+<td style="text-align: left;">mean</td>
+<td style="text-align: right;">2.18666</td>
+<td style="text-align: left;">20,150,374</td>
+<td style="text-align: left;">353,715</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">2126212</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">nan</td>
-<td style="text-align: right;">nan</td>
+<td style="text-align: left;">std</td>
+<td style="text-align: right;">9.30574</td>
+<td style="text-align: left;">2,495,732,782</td>
+<td style="text-align: left;">37,669,447</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">2190092</td>
+<td style="text-align: left;">min</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">nan</td>
-<td style="text-align: right;">nan</td>
+<td style="text-align: left;">-5,607,001</td>
+<td style="text-align: left;">-1,446,332</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">2209021</td>
+<td style="text-align: left;">25%</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">111,156</td>
+<td style="text-align: left;">6,068</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">50%</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">297,205</td>
+<td style="text-align: left;">17,998</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">75%</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">803,410</td>
+<td style="text-align: left;">53,902</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">max</td>
+<td style="text-align: right;">88</td>
+<td style="text-align: left;">481,223,000,000</td>
+<td style="text-align: left;">10,357,423,300</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">column name</th>
+<th style="text-align: right;">missing data points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">fr_5227_cd</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">nan</td>
-<td style="text-align: right;">nan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">asset_amt</td>
+<td style="text-align: right;">12927</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">income_amt</td>
+<td style="text-align: right;">12927</td>
 </tr>
 </tbody>
 </table>
@@ -10711,11 +10754,11 @@ vertical-align: -.125em;
 <ul>
 <li>name, primary_adr, primary_city_nm, primary_state_cd, zip_5_cd: These columns provide detailed information about the trust, including its name and location. This can be used to assess geographical trends in giving and to potentially correlate trusts with local environmental and social justice initiatives.</li>
 </ul>
-<div class="cell" data-execution_count="8">
+<div class="cell" data-execution_count="9">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [<span class="st">&#39;ein&#39;</span>,<span class="st">&#39;name&#39;</span>,<span class="st">&#39;primary_adr&#39;</span>,<span class="st">&#39;primary_city_nm&#39;</span>,<span class="st">&#39;primary_state_cd&#39;</span>,<span class="st">&#39;zip_5_cd&#39;</span>]</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>display_head(split_interest, columns, <span class="st">&quot;Example of trust and beneficiary data:&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [<span class="st">&#39;ein&#39;</span>,<span class="st">&#39;name&#39;</span>,<span class="st">&#39;primary_adr&#39;</span>,<span class="st">&#39;primary_city_nm&#39;</span>,<span class="st">&#39;primary_state_cd&#39;</span>,<span class="st">&#39;zip_5_cd&#39;</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>display_head(split_interest, columns, <span class="st">&quot;Example of trust and beneficiary data:&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p>Example of trust and beneficiary data:</p>
@@ -10792,72 +10835,72 @@ vertical-align: -.125em;
 <li>curr_status_cd and curr_status_prd: These columns indicate the current status of the trust and the period of this status, which can be vital for understanding operational standing and compliance.</li>
 <li>audit_history_cd: An indicator of whether the trust has been audited, which could imply levels of scrutiny and compliance.</li>
 </ul>
-<div class="cell" data-execution_count="9">
+<div class="cell" data-execution_count="14">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [<span class="st">&#39;ein&#39;</span>,<span class="st">&#39;established_prd&#39;</span>,<span class="st">&#39;ruling_prd&#39;</span>,<span class="st">&#39;curr_status_cd&#39;</span>,<span class="st">&#39;curr_status_prd&#39;</span>,<span class="st">&#39;audit_history_cd&#39;</span>]</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>display_head(split_interest, columns, <span class="st">&quot;Example of operational and compliance data:&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [<span class="st">&#39;ein&#39;</span>,<span class="st">&#39;established_prd&#39;</span>,<span class="st">&#39;ruling_prd&#39;</span>,<span class="st">&#39;curr_status_cd&#39;</span>,<span class="st">&#39;curr_status_prd&#39;</span>,<span class="st">&#39;audit_history_cd&#39;</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>display_head(split_interest, columns, <span class="st">&quot;Example of operational and compliance data:&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p>Example of operational and compliance data:</p>
 <table class="table table-sm table-striped">
 <colgroup>
-<col style="width: 9%">
+<col style="width: 8%">
 <col style="width: 19%">
-<col style="width: 14%">
+<col style="width: 19%">
+<col style="width: 16%">
+<col style="width: 19%">
 <col style="width: 18%">
-<col style="width: 19%">
-<col style="width: 20%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: right;">ein</th>
-<th style="text-align: right;">established_prd</th>
-<th style="text-align: right;">ruling_prd</th>
+<th style="text-align: left;">established_prd</th>
+<th style="text-align: left;">ruling_prd</th>
 <th style="text-align: right;">curr_status_cd</th>
-<th style="text-align: right;">curr_status_prd</th>
+<th style="text-align: left;">curr_status_prd</th>
 <th style="text-align: right;">audit_history_cd</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">2001555</td>
-<td style="text-align: right;">197112</td>
-<td style="text-align: right;">197012</td>
+<td style="text-align: left;">1971-12-01 00:00:00</td>
+<td style="text-align: left;">1970-12-01 00:00:00</td>
 <td style="text-align: right;">12</td>
-<td style="text-align: right;">197305</td>
+<td style="text-align: left;">1973-05-01 00:00:00</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2032809</td>
-<td style="text-align: right;">197606</td>
-<td style="text-align: right;">197605</td>
+<td style="text-align: left;">1976-06-01 00:00:00</td>
+<td style="text-align: left;">1976-05-01 00:00:00</td>
 <td style="text-align: right;">12</td>
-<td style="text-align: right;">197605</td>
+<td style="text-align: left;">1976-05-01 00:00:00</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">2126212</td>
-<td style="text-align: right;">197710</td>
-<td style="text-align: right;">197710</td>
+<td style="text-align: left;">1977-10-01 00:00:00</td>
+<td style="text-align: left;">1977-10-01 00:00:00</td>
 <td style="text-align: right;">12</td>
-<td style="text-align: right;">197710</td>
+<td style="text-align: left;">1977-10-01 00:00:00</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2190092</td>
-<td style="text-align: right;">197112</td>
-<td style="text-align: right;">197012</td>
+<td style="text-align: left;">1971-12-01 00:00:00</td>
+<td style="text-align: left;">1970-12-01 00:00:00</td>
 <td style="text-align: right;">12</td>
-<td style="text-align: right;">197308</td>
+<td style="text-align: left;">1973-08-01 00:00:00</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">2209021</td>
-<td style="text-align: right;">197903</td>
-<td style="text-align: right;">0</td>
+<td style="text-align: left;">1979-03-01 00:00:00</td>
+<td style="text-align: left;">NaT</td>
 <td style="text-align: right;">12</td>
-<td style="text-align: right;">198207</td>
+<td style="text-align: left;">1982-07-01 00:00:00</td>
 <td style="text-align: right;">0</td>
 </tr>
 </tbody>
@@ -10873,8 +10916,8 @@ vertical-align: -.125em;
 <div class="cell" data-execution_count="10">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [<span class="st">&#39;ein&#39;</span>,<span class="st">&#39;deduct_cd&#39;</span>,<span class="st">&#39;deduct_yr&#39;</span>]</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>display_head(split_interest, columns, <span class="st">&quot;Example of giving patterns and trends data:&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [<span class="st">&#39;ein&#39;</span>,<span class="st">&#39;deduct_cd&#39;</span>,<span class="st">&#39;deduct_yr&#39;</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>display_head(split_interest, columns, <span class="st">&quot;Example of giving patterns and trends data:&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p>Example of giving patterns and trends data:</p>
@@ -10926,8 +10969,8 @@ vertical-align: -.125em;
 <div class="cell" data-execution_count="11">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [<span class="st">&#39;ein&#39;</span>,<span class="st">&#39;rec_load_dt&#39;</span>,<span class="st">&#39;char_tin&#39;</span>]</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>display_head(split_interest, columns, <span class="st">&quot;Example of general compliance and filing info data:&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [<span class="st">&#39;ein&#39;</span>,<span class="st">&#39;rec_load_dt&#39;</span>,<span class="st">&#39;char_tin&#39;</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>display_head(split_interest, columns, <span class="st">&quot;Example of general compliance and filing info data:&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p>Example of general compliance and filing info data:</p>
