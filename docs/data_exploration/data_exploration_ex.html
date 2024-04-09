@@ -4148,7 +4148,7 @@ vertical-align: -.125em;
 <h1>2. First Glance</h1>
 <section id="general-summary" class="level2">
 <h2 class="anchored" data-anchor-id="general-summary">2.1. General Summary</h2>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Libraries for data manipulation.</span></span>
@@ -4637,19 +4637,237 @@ vertical-align: -.125em;
 </section>
 <section id="statistical-summary" class="level2">
 <h2 class="anchored" data-anchor-id="statistical-summary">2.2. Statistical Summary</h2>
-<div class="cell" data-tags="[&quot;&quot;hide&quot;&quot;]" data-execution_count="3">
+<div class="cell" data-execution_count="3">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pd.options.display.float_format <span class="op">=</span> <span class="st">&#39;{:,.2f}&#39;</span>.<span class="bu">format</span></span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pd.options.display.float_format <span class="op">=</span> <span class="st">&#39;{:,.0f}&#39;</span>.<span class="bu">format</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>stat_sum_caption <span class="op">=</span> <span class="st">&quot;Statistical Summary:&quot;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>formatted_df <span class="op">=</span> df_reg_giv_irs_eo1.describe().copy()</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> formatted_df.select_dtypes(include<span class="op">=</span>[<span class="st">&#39;float64&#39;</span>, <span class="st">&#39;float32&#39;</span>]).columns:</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    formatted_df[col] <span class="op">=</span> formatted_df[col].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:,</span><span class="fl">.2</span><span class="er">f</span><span class="sc">}</span><span class="ss">&quot;</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>stat_sum_markdown <span class="op">=</span> stat_sum_caption <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span> <span class="op">+</span> formatted_df.to_markdown(index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#display(Markdown(stat_sum_markdown))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>display(Markdown(stat_sum_caption <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span>))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>simple_md <span class="op">=</span> df_reg_giv_irs_eo1.describe()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>display(simple_md)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display">
+<p>Statistical Summary:</p>
+</div>
+<div class="cell-output cell-output-display">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>EIN</th>
+      <th>GROUP</th>
+      <th>SUBSECTION</th>
+      <th>AFFILIATION</th>
+      <th>CLASSIFICATION</th>
+      <th>RULING</th>
+      <th>DEDUCTIBILITY</th>
+      <th>FOUNDATION</th>
+      <th>ACTIVITY</th>
+      <th>ORGANIZATION</th>
+      <th>STATUS</th>
+      <th>TAX_PERIOD</th>
+      <th>ASSET_CD</th>
+      <th>INCOME_CD</th>
+      <th>FILING_REQ_CD</th>
+      <th>PF_FILING_REQ_CD</th>
+      <th>ACCT_PD</th>
+      <th>ASSET_AMT</th>
+      <th>INCOME_AMT</th>
+      <th>REVENUE_AMT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>267,136</td>
+      <td>267,136</td>
+      <td>267,136</td>
+      <td>267,136</td>
+      <td>267,136</td>
+      <td>267,136</td>
+      <td>267,136</td>
+      <td>267,136</td>
+      <td>267,136</td>
+      <td>267,136</td>
+      <td>267,136</td>
+      <td>217,065</td>
+      <td>267,136</td>
+      <td>267,136</td>
+      <td>267,136</td>
+      <td>267,136</td>
+      <td>267,136</td>
+      <td>214,706</td>
+      <td>214,706</td>
+      <td>190,912</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>378,834,671</td>
+      <td>438</td>
+      <td>4</td>
+      <td>4</td>
+      <td>2,100</td>
+      <td>198,632</td>
+      <td>1</td>
+      <td>11</td>
+      <td>122,954,143</td>
+      <td>2</td>
+      <td>1</td>
+      <td>202,152</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>10</td>
+      <td>8,412,816</td>
+      <td>4,918,213</td>
+      <td>3,663,788</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>302,216,336</td>
+      <td>1,415</td>
+      <td>5</td>
+      <td>2</td>
+      <td>1,993</td>
+      <td>15,051</td>
+      <td>0</td>
+      <td>6</td>
+      <td>251,390,261</td>
+      <td>2</td>
+      <td>1</td>
+      <td>138</td>
+      <td>3</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>3</td>
+      <td>284,811,159</td>
+      <td>151,694,732</td>
+      <td>99,541,116</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>19,818</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>198,812</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-1,753,425</td>
+      <td>-46,780,468</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>133,973,617</td>
+      <td>0</td>
+      <td>3</td>
+      <td>3</td>
+      <td>1,000</td>
+      <td>198,303</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>202,112</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>8</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>237,362,930</td>
+      <td>0</td>
+      <td>3</td>
+      <td>3</td>
+      <td>1,000</td>
+      <td>200,505</td>
+      <td>1</td>
+      <td>15</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>202,206</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>12</td>
+      <td>5,989</td>
+      <td>3,000</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>736,107,573</td>
+      <td>0</td>
+      <td>3</td>
+      <td>3</td>
+      <td>2,000</td>
+      <td>201,611</td>
+      <td>1</td>
+      <td>15</td>
+      <td>90,000,000</td>
+      <td>1</td>
+      <td>1</td>
+      <td>202,212</td>
+      <td>4</td>
+      <td>4</td>
+      <td>2</td>
+      <td>0</td>
+      <td>12</td>
+      <td>380,038</td>
+      <td>206,526</td>
+      <td>145,756</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>996,082,178</td>
+      <td>9,706</td>
+      <td>92</td>
+      <td>9</td>
+      <td>9,510</td>
+      <td>202,306</td>
+      <td>4</td>
+      <td>25</td>
+      <td>999,000,000</td>
+      <td>6</td>
+      <td>25</td>
+      <td>202,306</td>
+      <td>9</td>
+      <td>9</td>
+      <td>14</td>
+      <td>3</td>
+      <td>12</td>
+      <td>54,599,818,948</td>
+      <td>42,081,770,632</td>
+      <td>19,858,151,933</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
 </div>
 </section>
 </section>
