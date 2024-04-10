@@ -8,7 +8,7 @@ website:
     left:
       - text: Home
         href: index.html
-      - text: Data Exploration
+      - text: Tax Data Exploration
         menu:
           - text: Exempt Organizations Business Master File Data
             href: data_exploration/data_exploration_ex.html
