@@ -1,0 +1,18 @@
+
+nav.navbar {
+    background-color: #004d40;
+}
+nav.navbar a.active,
+nav.navbar a:active {
+    color: white; /* Changes text color to yellow */
+    background-color: #004d40; /* Maintains the dark green background if needed */
+}
+nav.navbar a.active:hover,
+nav.navbar a:active:hover {
+    color: white; /* Keeps text color yellow on hover */
+    background-color: #00382e; /* Optional: slightly different green on hover */
+}
+.sidebar nav[role="doc-toc"] ul > li > a.active {
+    color: #005a48 !important;
+    font-weight: bold;
+}

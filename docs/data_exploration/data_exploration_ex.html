@@ -4714,7 +4714,24 @@ require(['plotly'], function(Plotly) {
 
 
 
-<style type="text/css"></style>
+<style type="text/css">
+nav.navbar {
+background-color: #004d40;
+}
+nav.navbar a.active,
+nav.navbar a:active {
+color: white; 
+background-color: #004d40; 
+}
+nav.navbar a.active:hover,
+nav.navbar a:active:hover {
+color: white; 
+background-color: #00382e; 
+}
+.sidebar nav[role="doc-toc"] ul > li > a.active {
+color: #005a48 !important;
+font-weight: bold;
+}</style>
 </head>
 
 <body class="nav-fixed">

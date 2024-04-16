@@ -32,7 +32,6 @@ website:
 
 format:
   html:
-    theme: cosmos
     css: styles.css
     toc: true
 
