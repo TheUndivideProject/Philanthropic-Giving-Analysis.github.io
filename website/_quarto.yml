@@ -18,10 +18,7 @@ website:
             href: data_exploration/form_990ez_exploration.html
           - text: Split Interest Trust Data
             href: data_exploration/split_interest_trust.html
-      - text: Tax Data Dashboard
-        menu:
-          - text: Exempt Organizations Analysis
-            href: dashboard/tableau.html
+
     right:
       - icon: twitter
         href: http://linktr.ee/theundivide
@@ -35,7 +32,7 @@ website:
 
 format:
   html:
-    theme: cosmo
+    theme: cosmos
     css: styles.css
     toc: true
 
