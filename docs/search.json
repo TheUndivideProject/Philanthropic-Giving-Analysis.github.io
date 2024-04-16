@@ -207,7 +207,7 @@
     "href": "index.html",
     "title": "Philanthropic Giving Analysis",
     "section": "",
-    "text": "Welcome to the Philanthropic Giving Analysis project!\nThe goal of this website is to investigate and present insights into philanthropic spending efforts towards environmental and social justice causes, as well as assess transparency and accountability within this sector. This analysis is crucial in the creation of an Environmental and Climate Justice Dashboard to bridge the gap between funding allocation and community impact.\nThe findings on this platform are still a work in progress. Ideas and suggestions are always welcome.\n\n\nThis project aims to:\n\nConduct a comprehensive analysis of various types of philanthropic giving data (Tax forms, etc).\nIdentify trends and patterns in spending towards environmental and social justice.\nEvaluate the transparency and accountability of these philanthropic efforts.\nIndentify relevant information for the creation of an Environmental and Climate Justice Dashboard"
+    "text": "Welcome to the Philanthropic Giving Analysis project!\nThe goal of this website is to investigate and present insights into philanthropic spending efforts towards environmental and social justice causes, as well as assess transparency and accountability within this sector. This analysis is crucial in the creation of an Environmental and Climate Justice Dashboard to bridge the gap between funding allocation and community impact.\nThe findings on this platform are still a work in progress. Ideas and suggestions are always welcome."
   },
   {
     "objectID": "dashboard/tableautest.html",
@@ -222,5 +222,12 @@
     "title": "Palmer Penguins",
     "section": "",
     "text": "import plotly.express as px\ndf = px.data.gapminder()\n\n\nIndicators\n\nimport plotly.express as px\ndf = px.data.gapminder()\npx.scatter(\n  df, x=\"gdpPercap\", y=\"lifeExp\", \n  animation_frame=\"year\", animation_group=\"country\",\n  size=\"pop\", color=\"continent\", hover_name=\"country\", \n  facet_col=\"continent\", log_x=True, size_max=45, \n  range_x=[100,100000], range_y=[25,90]\n)\n\nUnable to display output for mime type(s): application/vnd.plotly.v1+json\n\n\n\npx.area(df, x=\"year\", y=\"pop\", color=\"continent\", line_group=\"country\")\n\nUnable to display output for mime type(s): application/vnd.plotly.v1+json"
+  },
+  {
+    "objectID": "index.html#project-objectives",
+    "href": "index.html#project-objectives",
+    "title": "Philanthropic Giving Analysis",
+    "section": "Project Objectives",
+    "text": "Project Objectives\nThis project aims to:\n\nConduct a comprehensive analysis of various types of philanthropic giving data (Tax forms, etc).\nIdentify trends and patterns in spending towards environmental and social justice.\nEvaluate the transparency and accountability of these philanthropic efforts.\nIndentify relevant information for the creation of an Environmental and Climate Justice Dashboard"
   }
 ]

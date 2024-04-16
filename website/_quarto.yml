@@ -21,7 +21,7 @@ website:
       - text: Tax Data Dashboard
         menu:
           - text: Exempt Organizations Analysis
-            href: dashboard/ein_dashboard.html
+            href: dashboard/tableau.html
     right:
       - icon: twitter
         href: http://linktr.ee/theundivide
