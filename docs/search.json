@@ -214,6 +214,13 @@
     "href": "dashboard/tableautest.html",
     "title": "Philanthropic Giving Analysis",
     "section": "",
-    "text": "Here is some regular Markdown text.\n\n```{=html}\n<!-- This is an HTML block within Quarto -->\n<div style=\"color: red;\">\n    This text will be red and bold in the rendered HTML output.\n    <b>Red Bold Text</b>\n</div>\n\nHere is some regular Markdown text.\n\n\n    \n        \n    \n    \n         \n         \n        \n        \n        \n        \n        \n        \n        \n        \n        \n        \n        \n    \n\n\n\n\n<noscript>\n    <a href='#'>\n        <img alt='Dashboard 1 ' src='https://public.tableau.com/static/images/te/test1_17129496843790/Dashboard1/1_rss.png' style='border: none' />\n    </a>\n</noscript>\n<object class='tableauViz'  style='display:none;'>\n    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />\n    <param name='embed_code_version' value='3' />\n    <param name='site_root' value='' />\n    <param name='name' value='test1_17129496843790/Dashboard1' />\n    <param name='tabs' value='no' />\n    <param name='toolbar' value='yes' />\n    <param name='static_image' value='https://public.tableau.com/static/images/te/test1_17129496843790/Dashboard1/1.png' />\n    <param name='animate_transition' value='yes' />\n    <param name='display_static_image' value='yes' />\n    <param name='display_spinner' value='yes' />\n    <param name='display_overlay' value='yes' />\n    <param name='display_count' value='yes' />\n    <param name='language' value='en-US' />\n</object>"
+    "text": "Here is some regular Markdown text."
+  },
+  {
+    "objectID": "dashboard/quarto_dash.html",
+    "href": "dashboard/quarto_dash.html",
+    "title": "Palmer Penguins",
+    "section": "",
+    "text": "import plotly.express as px\ndf = px.data.gapminder()\n\n\nIndicators\n\nimport plotly.express as px\ndf = px.data.gapminder()\npx.scatter(\n  df, x=\"gdpPercap\", y=\"lifeExp\", \n  animation_frame=\"year\", animation_group=\"country\",\n  size=\"pop\", color=\"continent\", hover_name=\"country\", \n  facet_col=\"continent\", log_x=True, size_max=45, \n  range_x=[100,100000], range_y=[25,90]\n)\n\nUnable to display output for mime type(s): application/vnd.plotly.v1+json\n\n\n\npx.area(df, x=\"year\", y=\"pop\", color=\"continent\", line_group=\"country\")\n\nUnable to display output for mime type(s): application/vnd.plotly.v1+json"
   }
 ]
