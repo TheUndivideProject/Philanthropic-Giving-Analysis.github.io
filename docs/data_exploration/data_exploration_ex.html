@@ -4891,7 +4891,7 @@ font-weight: bold;
 <h1>2. First Glance</h1>
 <section id="general-summary" class="level2">
 <h2 class="anchored" data-anchor-id="general-summary">2.1. General Summary</h2>
-<div id="cell-4" class="cell" data-execution_count="1">
+<div id="cell-4" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Libraries for data manipulation.</span></span>
@@ -4914,7 +4914,7 @@ font-weight: bold;
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">&quot;ignore&quot;</span>, category<span class="op">=</span><span class="pp">UserWarning</span>)</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data.</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1 <span class="op">=</span> pd.read_csv(<span class="st">&#39;../../data/Regional Giving Data IRS eo1.csv&#39;</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1 <span class="op">=</span> pd.read_csv(<span class="st">&#39;../../data/EBMF/Regional Giving Data IRS eo1.csv&#39;</span>)</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Print data dimensions.</span></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>shape_caption <span class="op">=</span> <span class="st">&quot;Data Dimensions:&quot;</span></span>
@@ -4946,12 +4946,13 @@ font-weight: bold;
 <span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Append metadata to list.</span></span>
 <span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    column_metadata.append(col_metadata)</span>
 <span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert list to pd df and then markdown table.</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>metadata_df <span class="op">=</span> pd.DataFrame(column_metadata)</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>metadata_df[<span class="st">&#39;Unique Values&#39;</span>] <span class="op">=</span> metadata_df[<span class="st">&#39;Unique Values&#39;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:,}</span><span class="ss">&quot;</span>)</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>metadata_df[<span class="st">&#39;Missing Values&#39;</span>] <span class="op">=</span> metadata_df[<span class="st">&#39;Missing Values&#39;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:,}</span><span class="ss">&quot;</span>)</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>metadata_markdown <span class="op">=</span> metadata_caption <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span> <span class="op">+</span> metadata_df.to_markdown(index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>display(Markdown(metadata_markdown))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert list to pd df and then markdown table.</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>metadata_df <span class="op">=</span> pd.DataFrame(column_metadata)</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>metadata_df[<span class="st">&#39;Unique Values&#39;</span>] <span class="op">=</span> metadata_df[<span class="st">&#39;Unique Values&#39;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:,}</span><span class="ss">&quot;</span>)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>metadata_df[<span class="st">&#39;Missing Values&#39;</span>] <span class="op">=</span> metadata_df[<span class="st">&#39;Missing Values&#39;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:,}</span><span class="ss">&quot;</span>)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>metadata_markdown <span class="op">=</span> metadata_caption <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span> <span class="op">+</span> metadata_df.to_markdown(index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>display(Markdown(metadata_markdown))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display cell-output-markdown">
 <p>Data Dimensions:</p>
