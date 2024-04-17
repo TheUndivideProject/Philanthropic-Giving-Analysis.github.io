@@ -23,7 +23,7 @@ website:
           - text: Exempt Organizations at a Glance
             href: dashboard/tableau.html
           - text: Form 990 Deep Dive
-            href: dashboard/tableau.html
+            href: dashboard/quarto_dash.html
     right:
       - icon: twitter
         href: http://linktr.ee/theundivide
