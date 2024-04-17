@@ -18,7 +18,12 @@ website:
             href: data_exploration/form_990ez_exploration.html
           - text: Split Interest Trust Data
             href: data_exploration/split_interest_trust.html
-
+      - text: Tax Data Analysis
+        menu:
+          - text: Exempt Organizations at a Glance
+            href: dashboard/tableau.html
+          - text: Form 990 Deep Dive
+            href: dashboard/tableau.html
     right:
       - icon: twitter
         href: http://linktr.ee/theundivide
