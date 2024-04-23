@@ -1,0 +1,99 @@
+---
+title: "Customer Churn"
+format: dashboard
+logo: images/logo.png
+theme: custom.scss
+---
+
+```{python}
+#| tags: [parameters]
+
+# to render w/ a different product type:
+# quarto render dashboard.qmd -P product_type:Premium
+
+product_type = "Standard"
+```
+
+```{python}
+import pandas as pd
+from helpers import color_palette, plot_churn_reason, plot_contract_type, table_purchases
+from matplotlib import rcParams
+from itables import show
+
+rcParams.update({"savefig.bbox": "tight"})
+
+churn = pd.read_csv("data/churn.csv")
+churn_reason = pd.read_csv("data/churn_reason.csv")
+purchase_characteristics = pd.read_csv("data/purchase_characteristics.csv")
+```
+
+# Churn (`{python} product_type`)
+
+## Row
+
+```{python}
+#| content: valuebox
+#| title: "Churn rate 2022"
+dict(
+  icon = "archive",
+  color = "light",
+  value = "17%"
+)
+```
+
+```{python}
+#| content: valuebox
+#| title: "Current churn rate"
+dict(
+  icon = "graph-down",
+  color = "light",
+  value = "14%"
+)
+```
+
+```{python}
+#| content: valuebox
+#| title: "Churn rate goal"
+dict(
+  icon = "bullseye",
+  color = "warning",
+  value = "10%"
+)
+```
+
+## Row {height="60%"}
+
+```{python}
+#| title: Reason for churn by quarter
+plot_churn_reason(churn_reason, product_type)
+```
+
+
+```{python}
+#| title: Churn by contract type and days since purchase
+plot_contract_type(churn, product_type)
+```
+
+## Row
+
+```{python}
+#| title: Purchase characteristics
+from IPython.display import Markdown
+characteristics = table_purchases(purchase_characteristics, product_type)
+Markdown(characteristics.to_markdown(index = False))
+```
+
+# Data 
+
+```{python}
+#| title: Churn Reason
+show(churn_reason[churn_reason["product"]==product_type])
+```
+
+```{python}
+#| title: Contracts by State
+show(churn[churn['product'] == product_type]
+  .groupby(['contract', 'state'])
+  .size()
+  .reset_index(name='count'))
+```
