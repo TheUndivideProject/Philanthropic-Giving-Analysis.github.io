@@ -256,7 +256,7 @@
     "href": "dashboard/quarto_dash.html",
     "title": "Form 990 Research Question Analysis via Quarto",
     "section": "",
-    "text": "Code\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\ndf = pd.read_csv('../../data/form990_embf.csv', )\ndf.drop(['Unnamed: 0'], axis=1, inplace=True)\n\ndisplay(df.head())\ndisplay(df.shape)\n\n\n/var/folders/79/jdv69xcs22z7cyxln5rsbzzh0000gn/T/ipykernel_24273/837306774.py:5: DtypeWarning: Columns (14,46,78) have mixed types. Specify dtype option on import or set low_memory=False.\n  df = pd.read_csv('../../data/form990_embf.csv', )\n\n\n\n\n\n\n\n\n\n\nefile\nein\ntax_pd\nsubseccd\ns501c3or4947a1cd\nschdbind\npoliticalactvtscd\nlbbyingactvtscd\nsubjto6033cd\ndnradvisedfundscd\n...\ngrsinc509\nunreltxincls511tx509\nsubtotsuppinc509\nnetincunrelatd509\nothrinc509\ntotsupp509\nactivity\nntee_cd\nsubsection\naffiliation\n\n\n\n\n0\nP\n426057254.0\n2011-06-01\n2.0\nN\nN\nN\nNaN\nN\nN\n...\n0.0\n0.0\n0.0\n0.0\n0.0\n0.0\n36399000.0\nNaN\n2.0\n3.0\n\n\n1\nP\n60891737.0\n2011-10-01\n5.0\nN\nN\nN\nNaN\nN\nN\n...\n0.0\n0.0\n0.0\n0.0\n0.0\n0.0\n232000000.0\nK20\n5.0\n3.0\n\n\n2\nP\n660550623.0\n2011-12-01\n3.0\nY\nY\nN\nN\nN\nN\n...\n0.0\n0.0\n0.0\n0.0\n0.0\n0.0\n0.0\nS20\n3.0\n3.0\n\n\n3\nP\n464039105.0\n2012-06-01\n3.0\nY\nY\nN\nN\nN\nN\n...\n0.0\n0.0\n0.0\n0.0\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n\n\n4\nP\n161696098.0\n2012-12-01\n3.0\nY\nN\nN\nN\nN\nN\n...\n0.0\n0.0\n0.0\n0.0\n0.0\n121247.0\n0.0\nT21\n3.0\n3.0\n\n\n\n\n5 rows × 250 columns\n\n\n\n\n(302568, 250)"
+    "text": "Code\nimport pandas as pd\nimport matplotlib.pyplot as plt\npd.options.mode.chained_assignment = None  # Disable the SettingWithCopyWarning\n\ndf = pd.read_csv('../../data/form990_embf.csv', )\ndf.drop(['Unnamed: 0'], axis=1, inplace=True)\n\n\n/var/folders/79/jdv69xcs22z7cyxln5rsbzzh0000gn/T/ipykernel_24273/1671272954.py:6: DtypeWarning: Columns (14,46,78) have mixed types. Specify dtype option on import or set low_memory=False.\n  df = pd.read_csv('../../data/form990_embf.csv', )"
   },
   {
     "objectID": "dashboard/quarto_dash.html#research-questions",
@@ -305,6 +305,6 @@
     "href": "dashboard/quarto_dash.html#what-is-the-impact-of-the-programs-run-by-these-organizations-and-how-effectively-are-they-using-their-funds",
     "title": "Form 990 Research Question Analysis via Quarto",
     "section": "2. What is the impact of the programs run by these organizations, and how effectively are they using their funds?",
-    "text": "2. What is the impact of the programs run by these organizations, and how effectively are they using their funds?\n  1. Comes from Section III in the form but the IRS extract lacks this info. What's the best way to look into this?\n\nTemporal:\n\nHow financially stable are philanthropic organizations over time?"
+    "text": "2. What is the impact of the programs run by these organizations, and how effectively are they using their funds?\n  1. Comes from Section III in the form but the IRS extract lacks this info. What's the best way to look into this?"
   }
 ]
