@@ -4710,15 +4710,15 @@ background-color: #004d40;
 nav.navbar a.active:hover,
 nav.navbar a:active:hover {
 color: white; 
-background-color: #00382e; 
-}
+background-color: #00382e; }
 .sidebar nav[role="doc-toc"] ul > li > a.active {
 color: #005a48 !important;
 font-weight: bold;
-}</style>
+}
+</style>
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -4797,12 +4797,12 @@ font-weight: bold;
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -4811,7 +4811,7 @@ font-weight: bold;
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -4837,31 +4837,34 @@ font-weight: bold;
 
 <section id="research-questions" class="level2">
 <h2 class="anchored" data-anchor-id="research-questions">Research Questions</h2>
-<section id="in-progress---please-contact-amelia-for-any-additional-questions-you-would-like-explored" class="level3">
-<h3 class="anchored" data-anchor-id="in-progress---please-contact-amelia-for-any-additional-questions-you-would-like-explored">(in progress - please contact Amelia for any additional questions you would like explored)::</h3>
-<ol type="1">
-<li>Spatial Variation:
+<p>(in progress - please contact Amelia for any additional questions you would like explored):</p>
+<section id="spatial-variation" class="level3">
+<h3 class="anchored" data-anchor-id="spatial-variation">1. Spatial Variation:</h3>
 <ol type="1">
 <li>How does the distribution of <strong><span title="Tax-exempt organizations">philanthropic organizations</span></strong> vary spatially?</li>
 <li>How does the distribution of <strong><span title="Total revenue for a tax exempt org in a particular year">philanthropic revenue</span></strong> vary spatially?</li>
-</ol></li>
-<li>Distribution of Activity Types:
+</ol>
+</section>
+<section id="distribution-of-activity-types" class="level3">
+<h3 class="anchored" data-anchor-id="distribution-of-activity-types">2. Distribution of Activity Types:</h3>
 <ol type="1">
 <li>What is the distribution of <strong><span title="An organization&#39;s purposes, activities, operations, or type">activity types</span></strong> in philanthropic organizations?</li>
 <li>What proportion of philanthropic organizations fall under <strong><span title="Where NTEE = XXX">environmental justice</span></strong>?</li>
-</ol></li>
-<li>Temporal Trends:
+</ol>
+</section>
+<section id="temporal-trends" class="level3">
+<h3 class="anchored" data-anchor-id="temporal-trends">3. Temporal Trends:</h3>
 <ol type="1">
 <li>What are the <strong><span title="Formation and financial">growth trends</span></strong> in philanthropic organizations over the past 5 years?</li>
 <li>What activities are seeing the most growth?</li>
-</ol></li>
 </ol>
-<div id="cell-2" class="cell" data-execution_count="1">
+<div id="cell-5" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>HTML</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">&#39;tableauPlaceholder&#39;</span> <span class="bu">id</span><span class="op">=</span><span class="st">&#39;viz1713357307044&#39;</span> style<span class="op">=</span><span class="st">&#39;position: relative&#39;</span><span class="op">&gt;&lt;</span>noscript<span class="op">&gt;&lt;</span>a href<span class="op">=</span><span class="st">&#39;#&#39;</span><span class="op">&gt;&lt;</span>img alt<span class="op">=</span><span class="st">&#39;Tax Exempt Organizations at a Glance &#39;</span> src<span class="op">=</span><span class="st">&#39;https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;EO&amp;#47;EOMBFDashboard&amp;#47;Dashboard1&amp;#47;1_rss.png&#39;</span> style<span class="op">=</span><span class="st">&#39;border: none&#39;</span> <span class="op">/&gt;&lt;/</span>a<span class="op">&gt;&lt;/</span>noscript<span class="op">&gt;&lt;</span><span class="bu">object</span> <span class="kw">class</span><span class="op">=</span><span class="st">&#39;tableauViz&#39;</span>  style<span class="op">=</span><span class="st">&#39;display:none;&#39;</span><span class="op">&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;host_url&#39;</span> value<span class="op">=</span><span class="st">&#39;https%3A</span><span class="sc">%2F%2F</span><span class="st">public.tableau.com</span><span class="sc">%2F</span><span class="st">&#39;</span> <span class="op">/&gt;</span> <span class="op">&lt;</span>param name<span class="op">=</span><span class="st">&#39;embed_code_version&#39;</span> value<span class="op">=</span><span class="st">&#39;3&#39;</span> <span class="op">/&gt;</span> <span class="op">&lt;</span>param name<span class="op">=</span><span class="st">&#39;site_root&#39;</span> value<span class="op">=</span><span class="st">&#39;&#39;</span> <span class="op">/&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;name&#39;</span> value<span class="op">=</span><span class="st">&#39;EOMBFDashboard&amp;#47;Dashboard1&#39;</span> <span class="op">/&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;tabs&#39;</span> value<span class="op">=</span><span class="st">&#39;no&#39;</span> <span class="op">/&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;toolbar&#39;</span> value<span class="op">=</span><span class="st">&#39;yes&#39;</span> <span class="op">/&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;static_image&#39;</span> value<span class="op">=</span><span class="st">&#39;https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;EO&amp;#47;EOMBFDashboard&amp;#47;Dashboard1&amp;#47;1.png&#39;</span> <span class="op">/&gt;</span> <span class="op">&lt;</span>param name<span class="op">=</span><span class="st">&#39;animate_transition&#39;</span> value<span class="op">=</span><span class="st">&#39;yes&#39;</span> <span class="op">/&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;display_static_image&#39;</span> value<span class="op">=</span><span class="st">&#39;yes&#39;</span> <span class="op">/&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;display_spinner&#39;</span> value<span class="op">=</span><span class="st">&#39;yes&#39;</span> <span class="op">/&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;display_overlay&#39;</span> value<span class="op">=</span><span class="st">&#39;yes&#39;</span> <span class="op">/&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;display_count&#39;</span> value<span class="op">=</span><span class="st">&#39;yes&#39;</span> <span class="op">/&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;language&#39;</span> value<span class="op">=</span><span class="st">&#39;en-US&#39;</span> <span class="op">/&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;filter&#39;</span> value<span class="op">=</span><span class="st">&#39;publish=yes&#39;</span> <span class="op">/&gt;&lt;/</span><span class="bu">object</span><span class="op">&gt;&lt;/</span>div<span class="op">&gt;</span>                <span class="op">&lt;</span>script <span class="bu">type</span><span class="op">=</span><span class="st">&#39;text/javascript&#39;</span><span class="op">&gt;</span>                    var divElement <span class="op">=</span> document.getElementById(<span class="st">&#39;viz1713357307044&#39;</span>)<span class="op">;</span>                    var vizElement <span class="op">=</span> divElement.getElementsByTagName(<span class="st">&#39;object&#39;</span>)[<span class="dv">0</span>]<span class="op">;</span>                    <span class="cf">if</span> ( divElement.offsetWidth <span class="op">&gt;</span> <span class="dv">800</span> ) { vizElement.style.width<span class="op">=</span><span class="st">&#39;100%&#39;</span><span class="op">;</span>vizElement.style.height<span class="op">=</span>(divElement.offsetWidth<span class="op">*</span><span class="fl">0.75</span>)<span class="op">+</span><span class="st">&#39;px&#39;</span><span class="op">;</span>} <span class="cf">else</span> <span class="cf">if</span> ( divElement.offsetWidth <span class="op">&gt;</span> <span class="dv">500</span> ) { vizElement.style.width<span class="op">=</span><span class="st">&#39;100%&#39;</span><span class="op">;</span>vizElement.style.height<span class="op">=</span>(divElement.offsetWidth<span class="op">*</span><span class="fl">0.75</span>)<span class="op">+</span><span class="st">&#39;px&#39;</span><span class="op">;</span>} <span class="cf">else</span> { vizElement.style.width<span class="op">=</span><span class="st">&#39;100%&#39;</span><span class="op">;</span>vizElement.style.height<span class="op">=</span><span class="st">&#39;1127px&#39;</span><span class="op">;</span>}                     var scriptElement <span class="op">=</span> document.createElement(<span class="st">&#39;script&#39;</span>)<span class="op">;</span>                    scriptElement.src <span class="op">=</span> <span class="st">&#39;https://public.tableau.com/javascripts/api/viz_v1.js&#39;</span><span class="op">;</span>                    vizElement.parentNode.insertBefore(scriptElement, vizElement)<span class="op">;</span>                <span class="op">&lt;/</span>script<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">&#39;tableauPlaceholder&#39;</span> <span class="bu">id</span><span class="op">=</span><span class="st">&#39;viz1713357307044&#39;</span> style<span class="op">=</span><span class="st">&#39;position: relative&#39;</span><span class="op">&gt;&lt;</span>noscript<span class="op">&gt;&lt;</span>a href<span class="op">=</span><span class="st">&#39;#&#39;</span><span class="op">&gt;&lt;</span>img alt<span class="op">=</span><span class="st">&#39;Tax Exempt Organizations at a Glance &#39;</span> src<span class="op">=</span><span class="st">&#39;https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;EO&amp;#47;EOMBFDashboard&amp;#47;Dashboard1&amp;#47;1_rss.png&#39;</span> style<span class="op">=</span><span class="st">&#39;border: none&#39;</span> <span class="op">/&gt;&lt;/</span>a<span class="op">&gt;&lt;/</span>noscript<span class="op">&gt;&lt;</span><span class="bu">object</span> <span class="kw">class</span><span class="op">=</span><span class="st">&#39;tableauViz&#39;</span>  style<span class="op">=</span><span class="st">&#39;display:none;&#39;</span><span class="op">&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;host_url&#39;</span> value<span class="op">=</span><span class="st">&#39;https%3A</span><span class="sc">%2F%2F</span><span class="st">public.tableau.com</span><span class="sc">%2F</span><span class="st">&#39;</span> <span class="op">/&gt;</span> <span class="op">&lt;</span>param name<span class="op">=</span><span class="st">&#39;embed_code_version&#39;</span> value<span class="op">=</span><span class="st">&#39;3&#39;</span> <span class="op">/&gt;</span> <span class="op">&lt;</span>param name<span class="op">=</span><span class="st">&#39;site_root&#39;</span> value<span class="op">=</span><span class="st">&#39;&#39;</span> <span class="op">/&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;name&#39;</span> value<span class="op">=</span><span class="st">&#39;EOMBFDashboard&amp;#47;Dashboard1&#39;</span> <span class="op">/&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;tabs&#39;</span> value<span class="op">=</span><span class="st">&#39;no&#39;</span> <span class="op">/&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;toolbar&#39;</span> value<span class="op">=</span><span class="st">&#39;yes&#39;</span> <span class="op">/&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;static_image&#39;</span> value<span class="op">=</span><span class="st">&#39;https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;EO&amp;#47;EOMBFDashboard&amp;#47;Dashboard1&amp;#47;1.png&#39;</span> <span class="op">/&gt;</span> <span class="op">&lt;</span>param name<span class="op">=</span><span class="st">&#39;animate_transition&#39;</span> value<span class="op">=</span><span class="st">&#39;yes&#39;</span> <span class="op">/&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;display_static_image&#39;</span> value<span class="op">=</span><span class="st">&#39;yes&#39;</span> <span class="op">/&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;display_spinner&#39;</span> value<span class="op">=</span><span class="st">&#39;yes&#39;</span> <span class="op">/&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;display_overlay&#39;</span> value<span class="op">=</span><span class="st">&#39;yes&#39;</span> <span class="op">/&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;display_count&#39;</span> value<span class="op">=</span><span class="st">&#39;yes&#39;</span> <span class="op">/&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;language&#39;</span> value<span class="op">=</span><span class="st">&#39;en-US&#39;</span> <span class="op">/&gt;&lt;</span>param name<span class="op">=</span><span class="st">&#39;filter&#39;</span> value<span class="op">=</span><span class="st">&#39;publish=yes&#39;</span> <span class="op">/&gt;&lt;/</span><span class="bu">object</span><span class="op">&gt;&lt;/</span>div<span class="op">&gt;</span>                <span class="op">&lt;</span>script <span class="bu">type</span><span class="op">=</span><span class="st">&#39;text/javascript&#39;</span><span class="op">&gt;</span>                    var divElement <span class="op">=</span> document.getElementById(<span class="st">&#39;viz1713357307044&#39;</span>)<span class="op">;</span>                    var vizElement <span class="op">=</span> divElement.getElementsByTagName(<span class="st">&#39;object&#39;</span>)[<span class="dv">0</span>]<span class="op">;</span>                    <span class="cf">if</span> ( divElement.offsetWidth <span class="op">&gt;</span> <span class="dv">800</span> ) { vizElement.style.width<span class="op">=</span><span class="st">&#39;100%&#39;</span><span class="op">;</span>vizElement.style.height<span class="op">=</span>(divElement.offsetWidth<span class="op">*</span><span class="fl">0.75</span>)<span class="op">+</span><span class="st">&#39;px&#39;</span><span class="op">;</span>} <span class="cf">else</span> <span class="cf">if</span> ( divElement.offsetWidth <span class="op">&gt;</span> <span class="dv">500</span> ) { vizElement.style.width<span class="op">=</span><span class="st">&#39;100%&#39;</span><span class="op">;</span>vizElement.style.height<span class="op">=</span>(divElement.offsetWidth<span class="op">*</span><span class="fl">0.75</span>)<span class="op">+</span><span class="st">&#39;px&#39;</span><span class="op">;</span>} <span class="cf">else</span> { vizElement.style.width<span class="op">=</span><span class="st">&#39;100%&#39;</span><span class="op">;</span>vizElement.style.height<span class="op">=</span><span class="st">&#39;1127px&#39;</span><span class="op">;</span>}                     var scriptElement <span class="op">=</span> document.createElement(<span class="st">&#39;script&#39;</span>)<span class="op">;</span>                    scriptElement.src <span class="op">=</span> <span class="st">&#39;https://public.tableau.com/javascripts/api/viz_v1.js&#39;</span><span class="op">;</span>                    vizElement.parentNode.insertBefore(scriptElement, vizElement)<span class="op">;</span>                <span class="op">&lt;/</span>script<span class="op">&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 
