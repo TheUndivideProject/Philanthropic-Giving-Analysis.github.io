@@ -4849,7 +4849,7 @@ font-weight: bold;
 <div id="769f6c65" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pd.options.mode.chained_assignment <span class="op">=</span> <span class="va">None</span>  <span class="co"># Disable the SettingWithCopyWarning</span></span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pd.options.mode.chained_assignment <span class="op">=</span> <span class="va">None</span>  </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter dataset to section IX fields from Form 990.</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df_expenses <span class="op">=</span> df[[</span>
@@ -4974,9 +4974,9 @@ font-weight: bold;
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.ticker <span class="im">import</span> FuncFormatter</span>
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> millions_formatter(x, pos):</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&gt;=</span> <span class="fl">1e9</span>:  <span class="co"># For values in billions</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&gt;=</span> <span class="fl">1e9</span>:  <span class="co"># For  billions</span></span>
 <span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f&#39;</span><span class="sc">{</span>x <span class="op">*</span> <span class="fl">1e-9</span><span class="sc">:.1f}</span><span class="ss">B&#39;</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> x <span class="op">&gt;=</span> <span class="fl">1e6</span>:  <span class="co"># For values in millions</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> x <span class="op">&gt;=</span> <span class="fl">1e6</span>:  <span class="co"># For millions</span></span>
 <span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f&#39;</span><span class="sc">{</span>x <span class="op">*</span> <span class="fl">1e-6</span><span class="sc">:.1f}</span><span class="ss">M&#39;</span></span>
 <span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
 <span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">int</span>(x)</span>
@@ -5016,7 +5016,7 @@ font-weight: bold;
 <div id="5be070da" class="cell" data-execution_count="137">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pd.options.mode.chained_assignment <span class="op">=</span> <span class="va">None</span>  <span class="co"># Disable the SettingWithCopyWarning</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pd.options.mode.chained_assignment <span class="op">=</span> <span class="va">None</span>  </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter dataset to section IX fields from Form 990.</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>df_revenue <span class="op">=</span> df[[<span class="st">&#39;totrevenue&#39;</span>,<span class="st">&#39;totprgmrevnue&#39;</span>,<span class="st">&#39;miscrevtot11e&#39;</span>,<span class="st">&#39;totcntrbgfts&#39;</span>]] </span>
@@ -5191,8 +5191,8 @@ font-weight: bold;
 </div>
 </div>
 </section>
-<section id="what-does-the-geogrphical-reach-national-vs-international-look-like-for-grant-giving" class="level2">
-<h2 class="anchored" data-anchor-id="what-does-the-geogrphical-reach-national-vs-international-look-like-for-grant-giving">4. What does the geogrphical reach (national vs international) look like for grant giving?</h2>
+<section id="what-does-the-geographical-reach-national-vs-international-look-like-for-grant-giving" class="level2">
+<h2 class="anchored" data-anchor-id="what-does-the-geographical-reach-national-vs-international-look-like-for-grant-giving">4. What does the geographical reach (national vs international) look like for grant giving?</h2>
 <div id="736d99d7" class="cell" data-execution_count="156">
 <details class="code-fold">
 <summary>Code</summary>
