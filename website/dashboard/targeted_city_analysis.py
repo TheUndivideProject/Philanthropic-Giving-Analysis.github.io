@@ -16,7 +16,7 @@ The following analysis includes a density map of EINs, a breakdown of philanthro
 """)
 
 # Load in data
-data_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'df_org_locals.csv')
+data_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'df_org_locals.csv')
 df_org_locals = pd.read_csv(data_path)
 
 melted_city_funds = pd.read_csv('../../data/melted_city_funds.csv')
