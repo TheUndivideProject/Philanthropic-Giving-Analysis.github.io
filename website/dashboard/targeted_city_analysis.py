@@ -1,13 +1,7 @@
 # Load in libraries
-import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 import plotly.express as px
 import streamlit as st
-from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import DBSCAN, KMeans
-import optuna
 
 # Streamlit layout
 st.set_page_config(page_title="Philanthropic Fund Analysis", layout="wide")
@@ -25,6 +19,15 @@ df_org_locals = pd.read_csv('../../data/df_org_locals.csv')
 melted_city_funds = pd.read_csv('../../data/melted_city_funds.csv')
 hypothesis_testing_results = pd.read_csv('../../data/hypothesis_testing_results.csv')
 df_combined = pd.read_csv('../../data/df_combined.csv')
+df_filing_pivot = pd.read_csv('../../data/df_filing_percentage.csv')
+df_city_rulingyear = pd.read_csv('../../data/df_city_rulingyear.csv')
+df_city_decade = pd.read_csv('../../data/df_city_decade.csv')
+df_nteename_groupby = pd.read_csv('../../data/df_nteename_groupby.csv')
+df_nteename_city_groupby = pd.read_csv('../../data/df_nteename_city_groupby.csv')
+df_city_rulingname_all = pd.read_csv('../../data/df_city_rulingname_all.csv')
+df_city_rulingname_grouped = pd.read_csv('../../data/df_city_rulingname_grouped.csv')
+df_city_rulingname_env = pd.read_csv('../../data/df_city_rulingname_env.csv')
+
 
 # Create the scatter plot of EINs and cities
 fig_map = px.scatter_mapbox(
@@ -39,7 +42,7 @@ fig_map = px.scatter_mapbox(
     mapbox_style='carto-positron',
     title='Density Map of EINs in Selected Cities'
 )
-
+fig_map.update_layout(height=700)
 # Display the map in a wide column
 st.plotly_chart(fig_map, use_container_width=True)
 
@@ -59,6 +62,7 @@ Despite Chicago and Washington having the highest number of nonprofits,
 fig_bar = px.bar(melted_city_funds, x='CITY', y='AMOUNT', color='FUND_TYPE', barmode='group')
 fig_bar.update_layout(title='Median Nonprofit Financial Breakdown By City',
     xaxis_tickfont_size=14,
+    height=500,
     yaxis=dict(
         title='USD (billions)',
         titlefont_size=16,
@@ -98,7 +102,6 @@ fig_box = px.box(
     y='AMOUNT',
     title='Comparison of Income between Targeted and Non-Targeted Cities'
 )
-
 fig_box.update_layout(
     yaxis=dict(type='log', title='Amount (log scale)'),
     xaxis=dict(title='City Target (1 = Yes, 0 = No)'),
@@ -106,6 +109,132 @@ fig_box.update_layout(
         text='Comparison of Income between Targeted and Non-Targeted Cities',
         x=0.5,
         xanchor='center'
-    )
+    ),
+    height=500,
 )
 st.plotly_chart(fig_box, use_container_width=True)
+
+
+##################################################
+# Section 2: Financial Transparency and Accountability
+st.header("Financial Transparency and Accountability")
+st.subheader("How transparent are the financial activities or organizations in these cities?")
+st.markdown("""
+Understanding these ratios helps identify where the gaps in nonprofit reporting and formalization exist.""")
+
+fig = px.bar(df_filing_pivot, x='CITY', y='Percentage_Not_Required_to_File', title='Percentage of Total EINs Not Required to File by City')
+fig.update_layout(
+    yaxis=dict(
+        title='Percentage of Total EINs Not Required to File'
+    ),
+    xaxis=dict(
+        title='City'
+    ),
+    height=500,
+)
+st.plotly_chart(fig, use_container_width=True)
+
+##################################################
+# Section 3: Trends over Time
+st.header("Trends over Time")
+st.subheader("How has the growth of nonprofit organizations evolved over time in these cities?")
+st.markdown("""
+Peaks in nonprofit creations during certain years - see below for analysis""")
+
+view_option = st.selectbox("Select View:", ["Year", "Decade"])
+
+if view_option == "Year":
+    # Plot ruling year
+    fig = px.line(df_city_rulingyear, x='RULING_YEAR', y='EIN')
+    fig.update_layout(
+        title='Number of Nonprofits in Targeted Cities by Ruling Year',
+        xaxis=dict(title='Ruling Year'),
+        yaxis=dict(title='Number of Nonprofits'),
+        height=500,
+    )
+else:
+    # Plot ruling decade
+    fig = px.line(df_city_decade, x='RULING', y='EIN')
+    fig.update_layout(
+        title='Number of Nonprofits in Targeted Cities by Ruling Decade',
+        xaxis=dict(title='Ruling Decade'),
+        yaxis=dict(title='Number of Nonprofits'),
+        height=500,
+    )
+
+# Display the plot
+st.plotly_chart(fig, use_container_width=True)
+
+st.subheader("Can we deduce historical events or trends in these cities by looking at the ruling date of organizations?")
+
+st.markdown("""
+### 1940s
+- **World War II Era:** war relief, support for soldiers and their families.
+- **Post-War Reconstruction:** rebuilding and providing aid.
+### 1950s
+- **Cold War** : emphasis on education, particularly in science and technology, National Defense Education Act (1958).
+- **Desegregation:** Brown v. Board of Education - promote equal access to quality education for all students
+### 1960s
+- **Civil Rights Movement and War on Poverty:** creation of numerous organizations focused on civil rights, social justice, and economic equality.
+- **Social Upheaval:** assassinations of Martin Luther King Jr. and Robert Kennedy, the escalation of the Vietnam War, and widespread protests, leading to the rise of nonprofits focused on social change, peace, and justice.
+### 1970s
+- **Environmental Movement:** first Earth Day in 1970 and the etablishment of the EPA.
+- **Women’s Rights:** passage of Title IX.
+### 1980s
+- **Reagan Era:** welfare/housing budget cuts, Reaganomics, 1986 Immigration Reform and Control Act.
+- **Public Health:** HIV/AIDS Crisis.
+### Early 2000s
+- **Post-Recession Recovery and Social Media Boom:** nonprofits focusing on economic recovery, digital advocacy.
+- **Climate Change Awareness:** Al Gore's "An Inconvienient Truth," Kyoto Protocol (2005), use of solar tech, Hurricane Katrina (2005) ** 
+### 2010s
+- **Social Upheaval:** acquittal of Trayvon Martin's shooter, deaths of Michael Brown, Eric Garner, and George Floyd among others.
+- **COVID-19 Pandemic:** non profits providing healthcare, economic relief.
+""")
+st.subheader("How have policy changes specific to these cities impacted the establishment of nonprofit organizations?")
+
+st.subheader("Can we use the nonprofit categories (NTEE Codes) to help explain this futher?")
+# plot group by name and count
+fig = px.bar(df_nteename_groupby, x='EIN',y='NTEE_NAME')
+fig.update_layout(
+    title='NTEE Name Distribution',
+    xaxis=dict(title='Number of Nonprofits'),
+    yaxis=dict(title='NTEE Name'),
+    width=1000,
+    height=600,)
+st.plotly_chart(fig, use_container_width=True)
+
+# plot by city and name
+fig = px.bar(df_nteename_city_groupby, x='CITY',y='EIN', color='NTEE_NAME',barmode='group')
+fig.update_layout(
+    title='NTEE Name Distribution by City',
+    xaxis=dict(title='City'),
+    yaxis=dict(title='Number of Nonprofits'),
+    width=1000,
+    height=500,)
+st.plotly_chart(fig, use_container_width=True)
+
+
+# NTEE Name Distribution by Ruling Years of Interest
+view_option = st.selectbox("Select View:", ["Top 5 Nonprofits", "Environment & Civil Rights Focused"])
+
+if view_option == "Top 5 Nonprofits":
+    fig = px.line(df_city_rulingname_all, x='RULING_YEAR',y='EIN', color='NTEE_NAME')
+    fig.update_layout(
+        title='Top 5 NTEE Distribution by Ruling Years',
+        xaxis=dict(title='Ruling Year'),
+        yaxis=dict(title='Number of Nonprofits'),
+        width=1000,
+        height=600,)
+    st.plotly_chart(fig, use_container_width=True)
+
+# Targeted NTEE Name Distribution by Ruling Year
+else:
+    fig = px.line(df_city_rulingname_grouped, x='RULING_YEAR',y='EIN', color='NTEE_NAME')
+    fig.update_layout(
+        title='Environmental & Civil Rights NTEE Distribution by Ruling Year',
+        xaxis=dict(title='Ruling Year'),
+        yaxis=dict(title='Number of Nonprofits'),
+        width=1000,
+        height=600,)
+    st.plotly_chart(fig, use_container_width=True)
+

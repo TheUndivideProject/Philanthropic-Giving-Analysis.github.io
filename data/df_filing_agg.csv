@@ -1,0 +1,29 @@
+CITY,FILING_REQ_CD,EIN
+CHICAGO,Required to File,13736
+WASHINGTON,Required to File,12052
+CHICAGO,Not Required to File,6015
+SEATTLE,Required to File,4875
+PORTLAND,Required to File,4825
+RALEIGH,Required to File,3676
+NEW ORLEANS,Required to File,2736
+ALEXANDRIA,Required to File,2547
+ROCHESTER,Required to File,2123
+WASHINGTON,Not Required to File,1630
+WICHITA,Required to File,1496
+SEATTLE,Not Required to File,1134
+PORTLAND,Not Required to File,1127
+SAVANNAH,Required to File,1069
+NEW ORLEANS,Not Required to File,770
+RALEIGH,Not Required to File,749
+ROCHESTER,Not Required to File,616
+WICHITA,Not Required to File,598
+LAUREL,Required to File,480
+ALEXANDRIA,Not Required to File,422
+SAVANNAH,Not Required to File,317
+NASHUA,Required to File,296
+FORT LAUDERDALE,Required to File,236
+LEWISTON,Required to File,193
+LAUREL,Not Required to File,182
+NASHUA,Not Required to File,81
+FORT LAUDERDALE,Not Required to File,75
+LEWISTON,Not Required to File,40
