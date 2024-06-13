@@ -20,17 +20,39 @@ data_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'df_org_l
 df_org_locals = pd.read_csv(data_path)
 #df_org_locals = pd.read_csv('../../data/df_org_locals.csv')
 
-melted_city_funds = pd.read_csv('../../data/melted_city_funds.csv')
-hypothesis_testing_results = pd.read_csv('../../data/hypothesis_testing_results.csv')
-df_combined = pd.read_csv('../../data/df_combined.csv')
-df_filing_pivot = pd.read_csv('../../data/df_filing_percentage.csv')
-df_city_rulingyear = pd.read_csv('../../data/df_city_rulingyear.csv')
-df_city_decade = pd.read_csv('../../data/df_city_decade.csv')
-df_nteename_groupby = pd.read_csv('../../data/df_nteename_groupby.csv')
-df_nteename_city_groupby = pd.read_csv('../../data/df_nteename_city_groupby.csv')
-df_city_rulingname_all = pd.read_csv('../../data/df_city_rulingname_all.csv')
-df_city_rulingname_grouped = pd.read_csv('../../data/df_city_rulingname_grouped.csv')
-df_city_rulingname_env = pd.read_csv('../../data/df_city_rulingname_env.csv')
+data_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'melted_city_funds.csv')
+melted_city_funds = pd.read_csv(data_path)
+
+data_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'hypothesis_testing_results.csv')
+hypothesis_testing_results = pd.read_csv(data_path)
+
+data_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'df_combined.csv')
+df_combined = pd.read_csv(data_path)
+
+data_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'df_filing_percentage.csv')
+df_filing_percentage = pd.read_csv(data_path)
+
+data_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'df_city_rulingyear.csv')
+df_city_rulingyear = pd.read_csv(data_path)
+
+data_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'df_city_decade.csv')
+df_city_decade = pd.read_csv(data_path)
+
+data_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'df_nteename_groupby.csv')
+df_nteename_groupby = pd.read_csv(data_path)
+
+data_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'df_nteename_city_groupby.csv')
+df_nteename_city_groupby = pd.read_csv(data_path)
+
+data_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'df_city_rulingname_all.csv')
+df_city_rulingname_all = pd.read_csv(data_path)
+
+data_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'df_city_rulingname_grouped.csv')
+df_city_rulingname_grouped = pd.read_csv(data_path)
+
+data_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'df_city_rulingname_env.csv')
+df_city_rulingname_env = pd.read_csv(data_path)
+
 
 
 # Create the scatter plot of EINs and cities
