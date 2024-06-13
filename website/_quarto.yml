@@ -24,6 +24,8 @@ website:
             href: dashboard/tableau.html
           - text: Form 990 Deep Dive
             href: dashboard/quarto_dash.html
+          - text: Philanthropic Analysis in Cities of Interest
+            href: dashboard/cities_of_interest.html
     right:
       - icon: twitter
         href: http://linktr.ee/theundivide
