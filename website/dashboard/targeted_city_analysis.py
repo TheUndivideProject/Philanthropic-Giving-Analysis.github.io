@@ -148,7 +148,7 @@ st.subheader("How transparent are the financial activities or organizations in t
 st.markdown("""
 Understanding these ratios helps identify where the gaps in nonprofit reporting and formalization exist.""")
 
-fig = px.bar(df_filing_pivot, x='CITY', y='Percentage_Not_Required_to_File', title='Percentage of Total EINs Not Required to File by City')
+fig = px.bar(df_filing_percentage, x='CITY', y='Percentage_Not_Required_to_File', title='Percentage of Total EINs Not Required to File by City')
 fig.update_layout(
     yaxis=dict(
         title='Percentage of Total EINs Not Required to File'
