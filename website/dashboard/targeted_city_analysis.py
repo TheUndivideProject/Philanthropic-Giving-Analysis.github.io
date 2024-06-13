@@ -2,6 +2,7 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+import os
 
 # Streamlit layout
 st.set_page_config(page_title="Philanthropic Fund Analysis", layout="wide")
