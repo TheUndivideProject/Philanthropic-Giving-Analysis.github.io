@@ -53,6 +53,11 @@ df_city_rulingname_grouped = pd.read_csv(data_path)
 data_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'df_city_rulingname_env.csv')
 df_city_rulingname_env = pd.read_csv(data_path)
 
+data_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'df_city_nteena_cluster.csv')
+df_city_nteena_cluster = pd.read_csv(data_path)
+
+data_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'df_env_city_cluster.csv')
+df_env_city_cluster = pd.read_csv(data_path)
 
 
 # Create the scatter plot of EINs and cities
@@ -264,3 +269,100 @@ else:
         height=600,)
     st.plotly_chart(fig, use_container_width=True)
 
+##################################################
+# Section 4: ML Trends
+st.header("Machine Learning Focus")
+st.subheader("Can we segment organizations into distinct clusters based on their financial health indicators (assets, income, revenue)?")
+st.markdown("""
+XXXX""")
+df_city_nteena_cluster["CLUSTER_KMEANS"] = df_city_nteena_cluster["CLUSTER_KMEANS"].astype(str)
+df_env_city_cluster["CLUSTER_KMEANS"] = df_env_city_cluster["CLUSTER_KMEANS"].astype(str)
+
+view_option = st.selectbox("Select View:", ["All nonprofits", "Environmental and civil rights nonprofits"])
+
+if view_option == "All nonprofits":
+    fig = px.scatter_3d(df_city_nteena_cluster, 
+                    x='ASSET_AMT', 
+                    y='INCOME_AMT', 
+                    z='REVENUE_AMT', 
+                    color='CLUSTER_KMEANS',
+                    color_discrete_sequence=px.colors.qualitative.G10,
+                    hover_data={'NTEE_NAME': True, 'NAME': True})
+    fig.update_layout(
+        title='3D Clusters of All Organizations by Financial Health',
+        scene = dict(
+                        xaxis_title='Asset Amount',
+                        yaxis_title='Income Amount',
+                        zaxis_title='Revenue Amount',
+                    ),
+        width=700,
+        height=500,
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
+if view_option == "Environmental and civil rights nonprofits":
+    fig = px.scatter_3d(df_env_city_cluster, 
+                    x='ASSET_AMT', 
+                    y='INCOME_AMT', 
+                    z='REVENUE_AMT', 
+                    color='CLUSTER_KMEANS',
+                    color_discrete_sequence=px.colors.qualitative.G10,
+                    hover_data={'NTEE_NAME': True, 'NAME': True})
+    fig.update_layout(
+        title='3D Clusters of Environmental and Civil Rights Organizations by Financial Health',
+        scene = dict(
+                        xaxis_title='Asset Amount',
+                        yaxis_title='Income Amount',
+                        zaxis_title='Revenue Amount',
+                    ),
+        width=700,
+        height=500,
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
+st.subheader("What is the distribution of environmental and civil rights nonprofits across the clusters?")
+ntee_distribution = df_env_city_cluster.groupby(['CLUSTER_KMEANS', 'NTEE_NAME']).size().unstack().fillna(0).reset_index()
+ntee_distribution_melt = ntee_distribution.melt(id_vars=['CLUSTER_KMEANS'], value_vars=['Civil Rights, Social Action & Advocacy','Environment'], var_name='NTEE',value_name='Number of Nonprofits')
+fig= px.bar(ntee_distribution_melt, x='CLUSTER_KMEANS', y='Number of Nonprofits', color='NTEE', barmode='group')
+fig.update_layout(title='Number of Environmental and Civil Rights Nonprofits by Cluster (Log Transformed)',
+                  xaxis=dict(title='Cluster'),
+                  yaxis=dict( type='log'),
+                  width=800,    
+                  height=500,)
+st.plotly_chart(fig, use_container_width=True)
+
+
+
+st.subheader("Which clusters of organizations have the highest potential financial impact?")
+view_option = st.selectbox("Select View:", ["Among all nonprofits", "Among environmental and civil rights nonprofits"])
+
+if view_option == "Among all nonprofits":
+    cluster_analysis = df_city_nteena_cluster.groupby('CLUSTER_KMEANS')[['ASSET_AMT', 'INCOME_AMT', 'REVENUE_AMT']].median().reset_index()
+    cluster_analysis_melt = cluster_analysis.melt(id_vars=['CLUSTER_KMEANS'], value_vars=['INCOME_AMT', 'ASSET_AMT', 'REVENUE_AMT'], var_name='FUND_TYPE', value_name='AMOUNT')
+    fig= px.bar(cluster_analysis_melt, x='CLUSTER_KMEANS', y='AMOUNT', color='FUND_TYPE', barmode='group')
+    fig.update_layout(title='KMeans Clusters by Median Funding Amount',
+                    xaxis=dict(title='Cluster'),
+        yaxis=dict(title='Amount (Log Transformed)', type='log'),  # Log transformation 
+        width=1000,
+        height=600,
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
+if view_option == "Among environmental and civil rights nonprofits":
+    cluster_analysis = df_env_city_cluster.groupby('CLUSTER_KMEANS')[['ASSET_AMT', 'INCOME_AMT', 'REVENUE_AMT']].median().reset_index()
+    cluster_analysis_melt = cluster_analysis.melt(id_vars=['CLUSTER_KMEANS'], value_vars=['INCOME_AMT', 'ASSET_AMT', 'REVENUE_AMT'], var_name='FUND_TYPE', value_name='AMOUNT')
+    fig= px.bar(cluster_analysis_melt, x='CLUSTER_KMEANS', y='AMOUNT', color='FUND_TYPE', barmode='group')
+    fig.update_layout(title='KMeans Clusters by Median Funding Amount',
+                    xaxis=dict(title='Cluster'),
+        yaxis=dict(title='Amount (Log Transformed)', type='log'),  # Log transformation 
+        width=1000,
+        height=600,
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
+
+st.subheader("What nonprofits fall into clusters identified as having highest potential financial impact?")
+df_names_highfinance = df_env_city_cluster[(df_env_city_cluster['CLUSTER_KMEANS']=='1') | (df_env_city_cluster['CLUSTER_KMEANS']=='2')]
+df_names_highfinance = df_names_highfinance[['NAME', 'CITY', 'NTEE_NAME','CLUSTER_KMEANS']]
+markdown_table = df_names_highfinance.to_markdown(index=False)
+st.markdown(markdown_table)
