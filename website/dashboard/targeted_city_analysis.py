@@ -365,4 +365,5 @@ if view_option == "Among environmental and civil rights nonprofits":
 st.subheader("What nonprofits fall into clusters identified as having highest potential financial impact?")
 df_names_highfinance = df_env_city_cluster[(df_env_city_cluster['CLUSTER_KMEANS']=='1') | (df_env_city_cluster['CLUSTER_KMEANS']=='2')]
 df_names_highfinance = df_names_highfinance[['NAME', 'CITY', 'NTEE_NAME','CLUSTER_KMEANS']]
-st.dataframe(df_names_highfinance, index=False)
+df_names_highfinance = df_names_highfinance.reset_index(drop=True)
+st.dataframe(df_names_highfinance)
