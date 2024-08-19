@@ -4874,11 +4874,11 @@ font-weight: bold;
 <div id="cell-4" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Libraries for data manipulation.</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Libraries for data manipulation</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Libraries for data visualisation.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Libraries for data visualisation</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
@@ -4889,14 +4889,14 @@ font-weight: bold;
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.io <span class="im">as</span> pio</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove warnings.</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove warnings</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">&quot;ignore&quot;</span>, category<span class="op">=</span><span class="pp">UserWarning</span>)</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data.</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>form_990_2022ez <span class="op">=</span> pd.read_csv(<span class="st">&#39;../../data/22eoextractez.csv&#39;</span>)</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Print data dimensions.</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Print data dimensions</span></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>shape_caption <span class="op">=</span> <span class="st">&quot;Data Dimensions:&quot;</span></span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>shape_df <span class="op">=</span> pd.DataFrame({</span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Dimension&#39;</span>: [<span class="st">&#39;Rows&#39;</span>,<span class="st">&#39;Columns&#39;</span>],</span>
@@ -4906,32 +4906,30 @@ font-weight: bold;
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>shape_markdown <span class="op">=</span> shape_caption <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span> <span class="op">+</span> shape_df.to_markdown(index<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>display(Markdown(shape_markdown))</span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a sample of the data.</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a sample of the data</span></span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>first_five_rows_caption <span class="op">=</span> <span class="st">&quot;First Five Rows of Data:&quot;</span></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>first_five_rows_markdown <span class="op">=</span> first_five_rows_caption <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span> <span class="op">+</span> form_990_2022ez.head().to_markdown(index<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>display(Markdown(first_five_rows_markdown))</span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Print metadata.</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Print metadata</span></span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>metadata_caption <span class="op">=</span> <span class="st">&quot;Metadata:&quot;</span></span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>column_metadata <span class="op">=</span> []</span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> form_990_2022ez.columns:</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Gather metadata for each col.</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    col_metadata <span class="op">=</span> {</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Column Name&#39;</span>: col,</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Data Type&#39;</span>: <span class="bu">str</span>(form_990_2022ez[col].dtype),</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Unique Values&#39;</span>: form_990_2022ez[col].nunique(),</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Missing Values&#39;</span>: form_990_2022ez[col].isnull().<span class="bu">sum</span>()</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Append metadata to list.</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    column_metadata.append(col_metadata)</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert list to pd df and then markdown table.</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>metadata_df <span class="op">=</span> pd.DataFrame(column_metadata)</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>metadata_df[<span class="st">&#39;Unique Values&#39;</span>] <span class="op">=</span> metadata_df[<span class="st">&#39;Unique Values&#39;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:,}</span><span class="ss">&quot;</span>)</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>metadata_df[<span class="st">&#39;Missing Values&#39;</span>] <span class="op">=</span> metadata_df[<span class="st">&#39;Missing Values&#39;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:,}</span><span class="ss">&quot;</span>)</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>metadata_markdown <span class="op">=</span> metadata_caption <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span> <span class="op">+</span> metadata_df.to_markdown(index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>display(Markdown(metadata_markdown))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    col_metadata <span class="op">=</span> {</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Column Name&#39;</span>: col,</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Data Type&#39;</span>: <span class="bu">str</span>(form_990_2022ez[col].dtype),</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Unique Values&#39;</span>: form_990_2022ez[col].nunique(),</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Missing Values&#39;</span>: form_990_2022ez[col].isnull().<span class="bu">sum</span>()</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    column_metadata.append(col_metadata)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert list to pd df and then markdown table</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>metadata_df <span class="op">=</span> pd.DataFrame(column_metadata)</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>metadata_df[<span class="st">&#39;Unique Values&#39;</span>] <span class="op">=</span> metadata_df[<span class="st">&#39;Unique Values&#39;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:,}</span><span class="ss">&quot;</span>)</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>metadata_df[<span class="st">&#39;Missing Values&#39;</span>] <span class="op">=</span> metadata_df[<span class="st">&#39;Missing Values&#39;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:,}</span><span class="ss">&quot;</span>)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>metadata_markdown <span class="op">=</span> metadata_caption <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span> <span class="op">+</span> metadata_df.to_markdown(index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>display(Markdown(metadata_markdown))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display cell-output-markdown">
 <p>Data Dimensions:</p>
@@ -5943,22 +5941,22 @@ font-weight: bold;
 <div id="cell-6" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize column names.</span></span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize column names</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>form_990_2022ez.columns <span class="op">=</span> [x.lower() <span class="cf">for</span> x <span class="kw">in</span> form_990_2022ez.columns]</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace zeros with NaN for appropriate columns.</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace zeros with NaN for appropriate columns</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace NaN with appropriate values accordingly.</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace NaN with appropriate values accordingly</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert columns to appropriate data types.</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert columns to appropriate data types</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>date_cols <span class="op">=</span> [<span class="st">&#39;taxpd&#39;</span>]</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> date_cols:</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    form_990_2022ez[col] <span class="op">=</span> pd.to_datetime(form_990_2022ez[col].astype(<span class="bu">str</span>).<span class="bu">str</span>.replace(<span class="st">&#39;\.0$&#39;</span>, <span class="st">&#39;&#39;</span>, regex<span class="op">=</span><span class="va">True</span>), <span class="bu">format</span><span class="op">=</span><span class="st">&#39;%Y%m&#39;</span>, errors<span class="op">=</span><span class="st">&#39;coerce&#39;</span>)</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># # Convert dtype for appropriate columns.</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert dtype for appropriate columns</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>form_990_2022ez[<span class="st">&#39;ein&#39;</span>] <span class="op">=</span> form_990_2022ez[<span class="st">&#39;ein&#39;</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.replace(<span class="st">&#39;\.0$&#39;</span>, <span class="st">&#39;&#39;</span>, regex<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># # Drop duplicates by keeping last tax_pd date.</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># # Drop duplicates by keeping last tax_pd date</span></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>form_990_2022ez <span class="op">=</span> form_990_2022ez.sort_values(<span class="st">&#39;taxpd&#39;</span>).drop_duplicates(<span class="st">&#39;ein&#39;</span>, keep<span class="op">=</span><span class="st">&#39;last&#39;</span>)</span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>head_caption <span class="op">=</span> <span class="st">&quot;Cleaned data sample view:&quot;</span></span>

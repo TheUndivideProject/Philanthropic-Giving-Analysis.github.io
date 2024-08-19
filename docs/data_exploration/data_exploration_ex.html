@@ -4889,8 +4889,8 @@ font-weight: bold;
 
 <section id="introduction" class="level1">
 <h1>1. Introduction</h1>
-<p>This document aims to perform an initial exploration of the Exempt Organizations Business Master File (EO BMF) features and values to identify relevant variables for a detailed analysis of philanthropic giving within the environmental and social justice sectors. Additionally, we intend to assess the level of transparency and accountability of various organizations, leveraging the data provided by the EO BMF Extract to inform our inquiry.</p>
-<p>The EO BMF Extract provides information about an organization from the Internal Revenue Service’s Business Master File. This is a cumulative file, and the data are the most recent information the IRS has for these organizations. Because the EO BMF is separated into csvs by regions, the csv used for this page’s analysis is specfic to the Northeast, inclusive of Connecticut, Maine, Massachusetts, New Hampshire, New Jersey, New York, Rhode Island, Vermont. In the future, a page will be created for a deeper analysis on all regions, but for now, this is just to get familiar with the data fields. Futher information can be found on IRS.gov - https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf</p>
+<p>This document aims to perform an initial exploration of the Exempt Organizations Business Master File (EO BMF) features and values to identify relevant variables for a detailed analysis of philanthropic giving within the environmental and social justice sectors. Additionally, we intend to assess fields that might help us understand the level of transparency and accountability of various organizations.</p>
+<p>The EO BMF Extract provides information about an organization from the Internal Revenue Service’s Business Master File. This is a cumulative file, and the data are the most recent information the IRS has for these organizations. Because the EO BMF is separated into csvs by regions, the csv used for this page’s analysis is specfic to the Northeast, inclusive of Connecticut, Maine, Massachusetts, New Hampshire, New Jersey, New York, Rhode Island, Vermont. To reproduce this analysis, I suggest downloading the latest file provided by the IRS at the link below. In the future, a page will be created for a deeper analysis on all regions, but for now, this is just to get familiar with the data fields. Futher information can be found on IRS.gov - https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf</p>
 </section>
 <section id="first-glance" class="level1">
 <h1>2. First Glance</h1>
@@ -4899,11 +4899,11 @@ font-weight: bold;
 <div id="cell-4" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Libraries for data manipulation.</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Libraries for data manipulation</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Libraries for data visualisation.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Libraries for data vis</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
@@ -4914,14 +4914,14 @@ font-weight: bold;
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.io <span class="im">as</span> pio</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove warnings.</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove warnings</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">&quot;ignore&quot;</span>, category<span class="op">=</span><span class="pp">UserWarning</span>)</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data.</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1 <span class="op">=</span> pd.read_csv(<span class="st">&#39;../../data/EBMF/Regional Giving Data IRS eo1.csv&#39;</span>)</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Print data dimensions.</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Print dimensions</span></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>shape_caption <span class="op">=</span> <span class="st">&quot;Data Dimensions:&quot;</span></span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>shape_df <span class="op">=</span> pd.DataFrame({</span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Dimension&#39;</span>: [<span class="st">&#39;Rows&#39;</span>,<span class="st">&#39;Columns&#39;</span>],</span>
@@ -4931,33 +4931,30 @@ font-weight: bold;
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>shape_markdown <span class="op">=</span> shape_caption <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span> <span class="op">+</span> shape_df.to_markdown(index<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>display(Markdown(shape_markdown))</span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a sample of the data.</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a sample of data</span></span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>first_five_rows_caption <span class="op">=</span> <span class="st">&quot;First Five Rows of Data:&quot;</span></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>first_five_rows_markdown <span class="op">=</span> first_five_rows_caption <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span> <span class="op">+</span> df_reg_giv_irs_eo1.head().to_markdown(index<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>display(Markdown(first_five_rows_markdown))</span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Print metadata.</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Print metadata</span></span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>metadata_caption <span class="op">=</span> <span class="st">&quot;Metadata:&quot;</span></span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>column_metadata <span class="op">=</span> []</span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> df_reg_giv_irs_eo1.columns:</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Gather metadata for each col.</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    col_metadata <span class="op">=</span> {</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Column Name&#39;</span>: col,</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Data Type&#39;</span>: <span class="bu">str</span>(df_reg_giv_irs_eo1[col].dtype),</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Unique Values&#39;</span>: df_reg_giv_irs_eo1[col].nunique(),</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Missing Values&#39;</span>: df_reg_giv_irs_eo1[col].isnull().<span class="bu">sum</span>()</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Append metadata to list.</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    column_metadata.append(col_metadata)</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert list to pd df and then markdown table.</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>metadata_df <span class="op">=</span> pd.DataFrame(column_metadata)</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>metadata_df[<span class="st">&#39;Unique Values&#39;</span>] <span class="op">=</span> metadata_df[<span class="st">&#39;Unique Values&#39;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:,}</span><span class="ss">&quot;</span>)</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>metadata_df[<span class="st">&#39;Missing Values&#39;</span>] <span class="op">=</span> metadata_df[<span class="st">&#39;Missing Values&#39;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:,}</span><span class="ss">&quot;</span>)</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>metadata_markdown <span class="op">=</span> metadata_caption <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span> <span class="op">+</span> metadata_df.to_markdown(index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>display(Markdown(metadata_markdown))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    col_metadata <span class="op">=</span> {</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Column Name&#39;</span>: col,</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Data Type&#39;</span>: <span class="bu">str</span>(df_reg_giv_irs_eo1[col].dtype),</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Unique Values&#39;</span>: df_reg_giv_irs_eo1[col].nunique(),</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Missing Values&#39;</span>: df_reg_giv_irs_eo1[col].isnull().<span class="bu">sum</span>()</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    column_metadata.append(col_metadata)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert list to pd df and then markdown table</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>metadata_df <span class="op">=</span> pd.DataFrame(column_metadata)</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>metadata_df[<span class="st">&#39;Unique Values&#39;</span>] <span class="op">=</span> metadata_df[<span class="st">&#39;Unique Values&#39;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:,}</span><span class="ss">&quot;</span>)</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>metadata_df[<span class="st">&#39;Missing Values&#39;</span>] <span class="op">=</span> metadata_df[<span class="st">&#39;Missing Values&#39;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:,}</span><span class="ss">&quot;</span>)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>metadata_markdown <span class="op">=</span> metadata_caption <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span> <span class="op">+</span> metadata_df.to_markdown(index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>display(Markdown(metadata_markdown))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display cell-output-markdown">
 <p>Data Dimensions:</p>
@@ -5629,22 +5626,22 @@ font-weight: bold;
 <div id="cell-8" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize column names.</span></span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize col names</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1.columns <span class="op">=</span> [x.lower() <span class="cf">for</span> x <span class="kw">in</span> df_reg_giv_irs_eo1.columns]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace zeros with NaN for appropriate columns.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace zeros with NaN for appropriate columns</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[<span class="st">&#39;ruling&#39;</span>] <span class="op">=</span> df_reg_giv_irs_eo1[<span class="st">&#39;ruling&#39;</span>].replace(<span class="dv">0</span>, np.nan)</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace NaN with appropriate values accordingly.</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace NaN with appropriate values accordingly</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[<span class="st">&#39;ntee_cd&#39;</span>].fillna(<span class="st">&#39;Z&#39;</span>, inplace<span class="op">=</span><span class="va">True</span>) <span class="co"># Z stands for unknown according to data documentation.</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert columns to appropriate data types.</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert columns to appropriate data types</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>date_cols <span class="op">=</span> [<span class="st">&#39;ruling&#39;</span>,<span class="st">&#39;tax_period&#39;</span>]</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> date_cols:</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    df_reg_giv_irs_eo1[col] <span class="op">=</span> df_reg_giv_irs_eo1[col].astype(<span class="bu">str</span>).<span class="bu">str</span>.replace(<span class="st">&#39;\.0$&#39;</span>, <span class="st">&#39;&#39;</span>, regex<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    df_reg_giv_irs_eo1[col] <span class="op">=</span> pd.to_datetime(df_reg_giv_irs_eo1[col], <span class="bu">format</span><span class="op">=</span><span class="st">&#39;%Y%m&#39;</span>, errors<span class="op">=</span><span class="st">&#39;coerce&#39;</span>)</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Show cleaned data.</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Show cleaned data</span></span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>head_caption <span class="op">=</span> <span class="st">&quot;Cleaned data sample view:&quot;</span></span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>head_df <span class="op">=</span> df_reg_giv_irs_eo1.head().copy()</span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>head_markdown <span class="op">=</span> head_caption <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span> <span class="op">+</span> head_df.to_markdown(index<span class="op">=</span><span class="va">False</span>)</span>
@@ -6090,41 +6087,42 @@ font-weight: bold;
 <div id="cell-17" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ntee_mapping <span class="op">=</span> {</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;A&#39;</span>: <span class="st">&#39;Arts, Culture and Humanities&#39;</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;B&#39;</span>: <span class="st">&#39;Education&#39;</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;C&#39;</span>: <span class="st">&#39;Environment&#39;</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;D&#39;</span>: <span class="st">&#39;Animal-Related&#39;</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;E&#39;</span>: <span class="st">&#39;Health Care&#39;</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;F&#39;</span>: <span class="st">&#39;Mental Health &amp; Crisis Intervention&#39;</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;G&#39;</span>: <span class="st">&#39;Voluntary Health Associations &amp; Medical Disciplines&#39;</span>,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;H&#39;</span>: <span class="st">&#39;Medical Research&#39;</span>,</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;I&#39;</span>: <span class="st">&#39;Crime &amp; Legal-Related&#39;</span>,</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;J&#39;</span>: <span class="st">&#39;Employment&#39;</span>,</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;K&#39;</span>: <span class="st">&#39;Food, Agriculture and Nutrition&#39;</span>,</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;L&#39;</span>: <span class="st">&#39;Housing &amp; Shelter&#39;</span>,</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;M&#39;</span>: <span class="st">&#39;Public Safety, Disaster Preparedness and Relief&#39;</span>,</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;N&#39;</span>: <span class="st">&#39;Recreation &amp; Sports&#39;</span>,</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;O&#39;</span>: <span class="st">&#39;Youth Development&#39;</span>,</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;P&#39;</span>: <span class="st">&#39;Human Services&#39;</span>,</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Q&#39;</span>: <span class="st">&#39;International, Foreign Affairs and National Security&#39;</span>,</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;R&#39;</span>: <span class="st">&#39;Civil Rights, Social Action &amp; Advocacy&#39;</span>,</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;S&#39;</span>: <span class="st">&#39;Community Improvement &amp; Capacity Building&#39;</span>,</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;T&#39;</span>: <span class="st">&#39;Philanthropy, Voluntarism and Grantmaking Foundations&#39;</span>,</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;U&#39;</span>: <span class="st">&#39;Science &amp; Technology&#39;</span>,</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;V&#39;</span>: <span class="st">&#39;Social Science&#39;</span>,</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;W&#39;</span>: <span class="st">&#39;Public &amp; Societal Benefit&#39;</span>,</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;X&#39;</span>: <span class="st">&#39;Religion-Related&#39;</span>,</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Y&#39;</span>: <span class="st">&#39;Mutual &amp; Membership Benefit&#39;</span>,</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Z&#39;</span>: <span class="st">&#39;Unknown&#39;</span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the first letter of NTEE_CD and map it to its description</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[<span class="st">&#39;category&#39;</span>] <span class="op">=</span> df_reg_giv_irs_eo1[<span class="st">&#39;ntee_cd&#39;</span>].<span class="bu">str</span>[<span class="dv">0</span>]</span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[<span class="st">&#39;category_desc&#39;</span>] <span class="op">=</span> df_reg_giv_irs_eo1[<span class="st">&#39;category&#39;</span>].<span class="bu">map</span>(ntee_mapping)</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;NTEE Code Distribution:&quot;</span>))</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[<span class="st">&#39;category_desc&#39;</span>].value_counts().to_frame(name<span class="op">=</span><span class="st">&quot;Number of orgs:&quot;</span>).T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create map of NTEE codes to their names (found in https://www.irs.gov/pub/irs-soi/eo-info.pdf)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ntee_mapping <span class="op">=</span> {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;A&#39;</span>: <span class="st">&#39;Arts, Culture and Humanities&#39;</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;B&#39;</span>: <span class="st">&#39;Education&#39;</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;C&#39;</span>: <span class="st">&#39;Environment&#39;</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;D&#39;</span>: <span class="st">&#39;Animal-Related&#39;</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;E&#39;</span>: <span class="st">&#39;Health Care&#39;</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;F&#39;</span>: <span class="st">&#39;Mental Health &amp; Crisis Intervention&#39;</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;G&#39;</span>: <span class="st">&#39;Voluntary Health Associations &amp; Medical Disciplines&#39;</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;H&#39;</span>: <span class="st">&#39;Medical Research&#39;</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;I&#39;</span>: <span class="st">&#39;Crime &amp; Legal-Related&#39;</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;J&#39;</span>: <span class="st">&#39;Employment&#39;</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;K&#39;</span>: <span class="st">&#39;Food, Agriculture and Nutrition&#39;</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;L&#39;</span>: <span class="st">&#39;Housing &amp; Shelter&#39;</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;M&#39;</span>: <span class="st">&#39;Public Safety, Disaster Preparedness and Relief&#39;</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;N&#39;</span>: <span class="st">&#39;Recreation &amp; Sports&#39;</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;O&#39;</span>: <span class="st">&#39;Youth Development&#39;</span>,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;P&#39;</span>: <span class="st">&#39;Human Services&#39;</span>,</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Q&#39;</span>: <span class="st">&#39;International, Foreign Affairs and National Security&#39;</span>,</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;R&#39;</span>: <span class="st">&#39;Civil Rights, Social Action &amp; Advocacy&#39;</span>,</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;S&#39;</span>: <span class="st">&#39;Community Improvement &amp; Capacity Building&#39;</span>,</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;T&#39;</span>: <span class="st">&#39;Philanthropy, Voluntarism and Grantmaking Foundations&#39;</span>,</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;U&#39;</span>: <span class="st">&#39;Science &amp; Technology&#39;</span>,</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;V&#39;</span>: <span class="st">&#39;Social Science&#39;</span>,</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;W&#39;</span>: <span class="st">&#39;Public &amp; Societal Benefit&#39;</span>,</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;X&#39;</span>: <span class="st">&#39;Religion-Related&#39;</span>,</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Y&#39;</span>: <span class="st">&#39;Mutual &amp; Membership Benefit&#39;</span>,</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Z&#39;</span>: <span class="st">&#39;Unknown&#39;</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract first letter of NTEE_CD and map it to its description</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[<span class="st">&#39;category&#39;</span>] <span class="op">=</span> df_reg_giv_irs_eo1[<span class="st">&#39;ntee_cd&#39;</span>].<span class="bu">str</span>[<span class="dv">0</span>]</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[<span class="st">&#39;category_desc&#39;</span>] <span class="op">=</span> df_reg_giv_irs_eo1[<span class="st">&#39;category&#39;</span>].<span class="bu">map</span>(ntee_mapping)</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;NTEE Code Distribution:&quot;</span>))</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[<span class="st">&#39;category_desc&#39;</span>].value_counts().to_frame(name<span class="op">=</span><span class="st">&quot;Number of orgs:&quot;</span>).T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display cell-output-markdown">
 <p>NTEE Code Distribution:</p>
@@ -6197,34 +6195,35 @@ font-weight: bold;
 <div id="cell-18" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ntee_env_mapping <span class="op">=</span> {</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C01&quot;</span>: <span class="st">&quot;Alliance/Advocacy Organizations&quot;</span>,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C02&quot;</span>: <span class="st">&quot;Management &amp; Technical Assistance&quot;</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C03&quot;</span>: <span class="st">&quot;Professional Societies, Associations&quot;</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C05&quot;</span>: <span class="st">&quot;Research Institutes and/or Public Policy Analysis&quot;</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C11&quot;</span>: <span class="st">&quot;Single Organization Support&quot;</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C12&quot;</span>: <span class="st">&quot;Fund Raising and/or Fund Distribution&quot;</span>,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C19&quot;</span>: <span class="st">&quot;Nonmonetary Support N.E.C.&quot;</span>,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C20&quot;</span>: <span class="st">&quot;Pollution Abatement and Control Services&quot;</span>,</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C27&quot;</span>: <span class="st">&quot;Recycling Programs&quot;</span>,</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C30&quot;</span>: <span class="st">&quot;Natural Resources Conservation and Protection&quot;</span>,</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C32&quot;</span>: <span class="st">&quot;Water Resource, Wetlands Conservation and Management&quot;</span>,</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C34&quot;</span>: <span class="st">&quot;Land Resources Conservation&quot;</span>,</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C35&quot;</span>: <span class="st">&quot;Energy Resources Conservation and Development&quot;</span>,</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C36&quot;</span>: <span class="st">&quot;Forest Conservation&quot;</span>,</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C40&quot;</span>: <span class="st">&quot;Botanical, Horticultural, and Landscape Services&quot;</span>,</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C41&quot;</span>: <span class="st">&quot;Botanical Gardens, Arboreta and Botanical Organizations&quot;</span>,</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C42&quot;</span>: <span class="st">&quot;Garden Club, Horticultural Program&quot;</span>,</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C50&quot;</span>: <span class="st">&quot;Environmental Beautification and Aesthetics&quot;</span>,</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C60&quot;</span>: <span class="st">&quot;Environmental Education and Outdoor Survival Programs&quot;</span>,</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C99&quot;</span>: <span class="st">&quot;Environmental Quality, Protection, and Beautification N.E.C.&quot;</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[<span class="st">&#39;env_category&#39;</span>] <span class="op">=</span> df_reg_giv_irs_eo1[<span class="st">&#39;ntee_cd&#39;</span>].<span class="bu">str</span>[<span class="dv">0</span>:<span class="dv">3</span>]</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[<span class="st">&#39;environment_cat_desc&#39;</span>] <span class="op">=</span> df_reg_giv_irs_eo1[<span class="st">&#39;env_category&#39;</span>].<span class="bu">map</span>(ntee_env_mapping)</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;Environment Specific NTEE Code Distribution:&quot;</span>))</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[<span class="st">&#39;environment_cat_desc&#39;</span>].value_counts().to_frame(name<span class="op">=</span><span class="st">&quot;Number of orgs&quot;</span>).T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create map of NTEE environmental codes to their names (found in https://www.irs.gov/pub/irs-soi/eo-info.pdf)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ntee_env_mapping <span class="op">=</span> {</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C01&quot;</span>: <span class="st">&quot;Alliance/Advocacy Organizations&quot;</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C02&quot;</span>: <span class="st">&quot;Management &amp; Technical Assistance&quot;</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C03&quot;</span>: <span class="st">&quot;Professional Societies, Associations&quot;</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C05&quot;</span>: <span class="st">&quot;Research Institutes and/or Public Policy Analysis&quot;</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C11&quot;</span>: <span class="st">&quot;Single Organization Support&quot;</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C12&quot;</span>: <span class="st">&quot;Fund Raising and/or Fund Distribution&quot;</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C19&quot;</span>: <span class="st">&quot;Nonmonetary Support N.E.C.&quot;</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C20&quot;</span>: <span class="st">&quot;Pollution Abatement and Control Services&quot;</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C27&quot;</span>: <span class="st">&quot;Recycling Programs&quot;</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C30&quot;</span>: <span class="st">&quot;Natural Resources Conservation and Protection&quot;</span>,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C32&quot;</span>: <span class="st">&quot;Water Resource, Wetlands Conservation and Management&quot;</span>,</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C34&quot;</span>: <span class="st">&quot;Land Resources Conservation&quot;</span>,</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C35&quot;</span>: <span class="st">&quot;Energy Resources Conservation and Development&quot;</span>,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C36&quot;</span>: <span class="st">&quot;Forest Conservation&quot;</span>,</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C40&quot;</span>: <span class="st">&quot;Botanical, Horticultural, and Landscape Services&quot;</span>,</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C41&quot;</span>: <span class="st">&quot;Botanical Gardens, Arboreta and Botanical Organizations&quot;</span>,</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C42&quot;</span>: <span class="st">&quot;Garden Club, Horticultural Program&quot;</span>,</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C50&quot;</span>: <span class="st">&quot;Environmental Beautification and Aesthetics&quot;</span>,</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C60&quot;</span>: <span class="st">&quot;Environmental Education and Outdoor Survival Programs&quot;</span>,</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C99&quot;</span>: <span class="st">&quot;Environmental Quality, Protection, and Beautification N.E.C.&quot;</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[<span class="st">&#39;env_category&#39;</span>] <span class="op">=</span> df_reg_giv_irs_eo1[<span class="st">&#39;ntee_cd&#39;</span>].<span class="bu">str</span>[<span class="dv">0</span>:<span class="dv">3</span>]</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[<span class="st">&#39;environment_cat_desc&#39;</span>] <span class="op">=</span> df_reg_giv_irs_eo1[<span class="st">&#39;env_category&#39;</span>].<span class="bu">map</span>(ntee_env_mapping)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;Environment Specific NTEE Code Distribution:&quot;</span>))</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[<span class="st">&#39;environment_cat_desc&#39;</span>].value_counts().to_frame(name<span class="op">=</span><span class="st">&quot;Number of orgs&quot;</span>).T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display cell-output-markdown">
 <p>Environment Specific NTEE Code Distribution:</p>
@@ -6294,16 +6293,17 @@ font-weight: bold;
 <div id="cell-19" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>starts_with_c <span class="op">=</span> df_reg_giv_irs_eo1[<span class="st">&#39;ntee_cd&#39;</span>].<span class="bu">str</span>.startswith(<span class="st">&#39;C&#39;</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>exclude_codes <span class="op">=</span> df_reg_giv_irs_eo1[<span class="st">&#39;ntee_cd&#39;</span>].<span class="bu">str</span>.match(<span class="vs">r&#39;^C0[1-3]|^C05|^C1[12]|^C19|^C20|^C27|^C30|^C3[24-6]|^C4[01-2]|^C50|^C60|^C99$&#39;</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="op">=</span> df_reg_giv_irs_eo1[starts_with_c <span class="op">&amp;</span> <span class="op">~</span>exclude_codes]</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;Number of Rows with Standard Environment Specific NTEE Codes:&quot;</span>))</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(starts_with_c.shape[<span class="dv">0</span>]<span class="op">-</span>df_filtered.shape[<span class="dv">0</span>])</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;Number of Rows with Non-standard Environment Specific NTEE Codes:&quot;</span>))</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_filtered.shape[<span class="dv">0</span>])</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;Examples of Non-standard Environment Specific NTEE Codes:&quot;</span>))</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>df_filtered[[<span class="st">&#39;ein&#39;</span>,<span class="st">&#39;name&#39;</span>,<span class="st">&#39;ntee_cd&#39;</span>]].head(<span class="dv">5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Investigate potential erroneous NTEE Codes</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>starts_with_c <span class="op">=</span> df_reg_giv_irs_eo1[<span class="st">&#39;ntee_cd&#39;</span>].<span class="bu">str</span>.startswith(<span class="st">&#39;C&#39;</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>exclude_codes <span class="op">=</span> df_reg_giv_irs_eo1[<span class="st">&#39;ntee_cd&#39;</span>].<span class="bu">str</span>.match(<span class="vs">r&#39;^C0[1-3]|^C05|^C1[12]|^C19|^C20|^C27|^C30|^C3[24-6]|^C4[01-2]|^C50|^C60|^C99$&#39;</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="op">=</span> df_reg_giv_irs_eo1[starts_with_c <span class="op">&amp;</span> <span class="op">~</span>exclude_codes]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;Number of Rows with Standard Environment Specific NTEE Codes:&quot;</span>))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(starts_with_c.shape[<span class="dv">0</span>]<span class="op">-</span>df_filtered.shape[<span class="dv">0</span>])</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;Number of Rows with Non-standard Environment Specific NTEE Codes:&quot;</span>))</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_filtered.shape[<span class="dv">0</span>])</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;Examples of Non-standard Environment Specific NTEE Codes:&quot;</span>))</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>df_filtered[[<span class="st">&#39;ein&#39;</span>,<span class="st">&#39;name&#39;</span>,<span class="st">&#39;ntee_cd&#39;</span>]].head(<span class="dv">5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display cell-output-markdown">
 <p>Number of Rows with Standard Environment Specific NTEE Codes:</p>
@@ -6443,41 +6443,17 @@ font-weight: bold;
 <section id="using-activity-codes" class="level3">
 <h3 class="anchored" data-anchor-id="using-activity-codes">4.1.4 Using Activity Codes</h3>
 <p>Note: activity codes became obsolete with the adoption of the National Taxonomy of Exempt Entity (NTEE) coding system in January 1995. However, organizations determined to be exempt prior to that date will reflect the activity codes previously assigned.</p>
-<div id="cell-23" class="cell" data-execution_count="11">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>filtered_df <span class="op">=</span> df_reg_giv_irs_eo1[df_reg_giv_irs_eo1[<span class="st">&#39;ntee_cd&#39;</span>] <span class="op">==</span> <span class="dv">0</span>]</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(filtered_df.shape[<span class="dv">0</span>])</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_reg_giv_irs_eo1.shape[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>0
-267136</code></pre>
-</div>
-</div>
-<div id="cell-24" class="cell" data-execution_count="10">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>filtered_df <span class="op">=</span> df_reg_giv_irs_eo1[df_reg_giv_irs_eo1[<span class="st">&#39;activity&#39;</span>] <span class="op">==</span> <span class="dv">0</span>]</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(filtered_df.shape[<span class="dv">0</span>])</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_reg_giv_irs_eo1.shape[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>158343
-267136</code></pre>
-</div>
-</div>
 </section>
 </section>
 <section id="geographic-distribution" class="level2">
 <h2 class="anchored" data-anchor-id="geographic-distribution">4.2. Geographic Distribution</h2>
 <p>State and region are determined from the filing address and generally represent the location of an organization’s headquarters, which may or may not represent the state(s) in which an organization has operations. - https://www.irs.gov/pub/irs-soi/eo-info.pdf</p>
 <p>By analyzing the addresses of the organizations, one can understand the geographic distribution of philanthropic efforts towards certain causes. This may help in assessing regional focuses and potential areas of need or gaps in support.</p>
-<div id="cell-26" class="cell" data-execution_count="11">
+<div id="cell-24" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;Ex. of Geographic Columns:&quot;</span>))</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[[<span class="st">&#39;ein&#39;</span>,<span class="st">&#39;street&#39;</span>,<span class="st">&#39;city&#39;</span>,<span class="st">&#39;state&#39;</span>,<span class="st">&#39;zip&#39;</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;Ex. of Geographic Columns:&quot;</span>))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[[<span class="st">&#39;ein&#39;</span>,<span class="st">&#39;street&#39;</span>,<span class="st">&#39;city&#39;</span>,<span class="st">&#39;state&#39;</span>,<span class="st">&#39;zip&#39;</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display cell-output-markdown">
 <p>Ex. of Geographic Columns:</p>
@@ -6546,13 +6522,13 @@ font-weight: bold;
 </div>
 </div>
 </div>
-<div id="cell-27" class="cell" data-execution_count="12">
+<div id="cell-25" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>state_cts <span class="op">=</span> df_reg_giv_irs_eo1[<span class="st">&#39;state&#39;</span>].value_counts().reset_index()</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>state_cts.columns <span class="op">=</span> [<span class="st">&#39;state&#39;</span>,<span class="st">&#39;count&#39;</span>]</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>state_cts[<span class="st">&#39;count&#39;</span>] <span class="op">=</span> state_cts[<span class="st">&#39;count&#39;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:,.0f}</span><span class="ss">&quot;</span>)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>state_cts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>state_cts <span class="op">=</span> df_reg_giv_irs_eo1[<span class="st">&#39;state&#39;</span>].value_counts().reset_index()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>state_cts.columns <span class="op">=</span> [<span class="st">&#39;state&#39;</span>,<span class="st">&#39;count&#39;</span>]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>state_cts[<span class="st">&#39;count&#39;</span>] <span class="op">=</span> state_cts[<span class="st">&#39;count&#39;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:,.0f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>state_cts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <div>
@@ -6618,25 +6594,25 @@ font-weight: bold;
 <div id="cell-fig-geo" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write line to show plotly in quarto rendering.</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>pio.renderers.default <span class="op">=</span> <span class="st">&quot;plotly_mimetype+notebook_connected&quot;</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Take value counts of orgs by state.</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>state_cts <span class="op">=</span> df_reg_giv_irs_eo1[<span class="st">&#39;state&#39;</span>].value_counts().reset_index()</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>state_cts.columns <span class="op">=</span> [<span class="st">&#39;state&#39;</span>,<span class="st">&#39;counts&#39;</span>]</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>state_cts[<span class="st">&#39;formatted_counts&#39;</span>] <span class="op">=</span> state_cts[<span class="st">&#39;counts&#39;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:,.0f}</span><span class="ss">&quot;</span>)</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Build map.</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.choropleth(state_cts, locations<span class="op">=</span><span class="st">&#39;state&#39;</span>, locationmode<span class="op">=</span><span class="st">&#39;USA-states&#39;</span>, color<span class="op">=</span><span class="st">&#39;counts&#39;</span>,</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>                    color_continuous_scale<span class="op">=</span><span class="st">&#39;Viridis&#39;</span>, scope<span class="op">=</span><span class="st">&#39;usa&#39;</span>,</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>                    title<span class="op">=</span><span class="st">&#39;Number of Exempt Organizations by State&#39;</span>)</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>fig.update_traces(hovertemplate<span class="op">=</span><span class="st">&#39;State: %</span><span class="sc">{location}</span><span class="st">&lt;br&gt;Count: %</span><span class="sc">{customdata[0]}</span><span class="st">&lt;extra&gt;&lt;/extra&gt;&#39;</span>,</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>                  customdata<span class="op">=</span>state_cts[[<span class="st">&#39;formatted_counts&#39;</span>]].values)</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>fig.update_layout(coloraxis_colorbar<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">&#39;Organization Count&#39;</span>))</span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write line to show plotly in quarto rendering</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>pio.renderers.default <span class="op">=</span> <span class="st">&quot;plotly_mimetype+notebook_connected&quot;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Take value counts of orgs by state</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>state_cts <span class="op">=</span> df_reg_giv_irs_eo1[<span class="st">&#39;state&#39;</span>].value_counts().reset_index()</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>state_cts.columns <span class="op">=</span> [<span class="st">&#39;state&#39;</span>,<span class="st">&#39;counts&#39;</span>]</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>state_cts[<span class="st">&#39;formatted_counts&#39;</span>] <span class="op">=</span> state_cts[<span class="st">&#39;counts&#39;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:,.0f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Build map</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.choropleth(state_cts, locations<span class="op">=</span><span class="st">&#39;state&#39;</span>, locationmode<span class="op">=</span><span class="st">&#39;USA-states&#39;</span>, color<span class="op">=</span><span class="st">&#39;counts&#39;</span>,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>                    color_continuous_scale<span class="op">=</span><span class="st">&#39;Viridis&#39;</span>, scope<span class="op">=</span><span class="st">&#39;usa&#39;</span>,</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>                    title<span class="op">=</span><span class="st">&#39;Number of Exempt Organizations by State&#39;</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>fig.update_traces(hovertemplate<span class="op">=</span><span class="st">&#39;State: %</span><span class="sc">{location}</span><span class="st">&lt;br&gt;Count: %</span><span class="sc">{customdata[0]}</span><span class="st">&lt;extra&gt;&lt;/extra&gt;&#39;</span>,</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>                  customdata<span class="op">=</span>state_cts[[<span class="st">&#39;formatted_counts&#39;</span>]].values)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>fig.update_layout(coloraxis_colorbar<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">&#39;Organization Count&#39;</span>))</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="fig-geo" class="cell-output cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -6679,11 +6655,11 @@ Figure 1: Geographic Analysis of Northeast Exempt Organizations
 <p>This is the month and year (YYYYMM) on a ruling or determination letter recognizing the organization’s exempt status - https://www.irs.gov/pub/irs-soi/eo-info.pdf</p>
 <p>The ruling date indicates when the IRS officially recognized the organization’s exempt status, enabling analysis of trends over time in the establishment and growth of organizations dedicated to certain causes.</p>
 <p>Data Transformation Note: 0.56% of the organizations contained a “0” value for this variable. They were replaced with missing (NaN) values to avoid confusion and are therefore not included in this section of analysis.</p>
-<div id="cell-30" class="cell" data-execution_count="14">
+<div id="cell-28" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;Ex. of Ruling Column:&quot;</span>))</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[[<span class="st">&#39;ein&#39;</span>,<span class="st">&#39;ruling&#39;</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;Ex. of Ruling Column:&quot;</span>))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[[<span class="st">&#39;ein&#39;</span>,<span class="st">&#39;ruling&#39;</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display cell-output-markdown">
 <p>Ex. of Ruling Column:</p>
@@ -6734,12 +6710,12 @@ Figure 1: Geographic Analysis of Northeast Exempt Organizations
 </div>
 </div>
 </div>
-<div id="cell-31" class="cell" data-execution_count="22">
+<div id="cell-29" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show stats.</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;Tax Ruling Summary Stats:&quot;</span>))</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[<span class="st">&#39;ruling&#39;</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show stats</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;Tax Ruling Summary Stats:&quot;</span>))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[<span class="st">&#39;ruling&#39;</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display cell-output-markdown">
 <p>Tax Ruling Summary Stats:</p>
@@ -6758,30 +6734,30 @@ Name: ruling, dtype: object</code></pre>
 <div id="cell-fig-ruling" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make data copy</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ruling_df <span class="op">=</span> df_reg_giv_irs_eo1.copy() </span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate percentage of zeros in RULING col.</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>pct_of_zeros <span class="op">=</span> ruling_df[<span class="st">&#39;ruling&#39;</span>].value_counts().get(<span class="dv">0</span>,<span class="dv">0</span>)<span class="op">/</span>ruling_df.shape[<span class="dv">0</span>]</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#print(f&quot;{pct_of_zeros:.2%}&quot;)</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate data anually.</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>annual_counts <span class="op">=</span> ruling_df.groupby(pd.Grouper(key<span class="op">=</span><span class="st">&#39;ruling&#39;</span>, freq<span class="op">=</span><span class="st">&#39;Y&#39;</span>)).size()</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply rolling window of 5 years to smooth the data</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>rolling_counts <span class="op">=</span> annual_counts.rolling(window<span class="op">=</span><span class="dv">5</span>, center<span class="op">=</span><span class="va">True</span>).mean()</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">5</span>))</span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>annual_counts.plot(alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">&#39;Annual Counts&#39;</span>)  <span class="co"># Original data</span></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>rolling_counts.plot(color<span class="op">=</span><span class="st">&#39;red&#39;</span>, label<span class="op">=</span><span class="st">&#39;5-Year Rolling Average&#39;</span>)  <span class="co"># Smoothed data</span></span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Number of Exempt Organizations Over Time (According to Ruling Date)&#39;</span>)</span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Ruling Date (Year)&#39;</span>)</span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Number of EINs&#39;</span>)</span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make data copy</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>ruling_df <span class="op">=</span> df_reg_giv_irs_eo1.copy() </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate percentage of zeros in RULING col</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>pct_of_zeros <span class="op">=</span> ruling_df[<span class="st">&#39;ruling&#39;</span>].value_counts().get(<span class="dv">0</span>,<span class="dv">0</span>)<span class="op">/</span>ruling_df.shape[<span class="dv">0</span>]</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#print(f&quot;{pct_of_zeros:.2%}&quot;)</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate data anually</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>annual_counts <span class="op">=</span> ruling_df.groupby(pd.Grouper(key<span class="op">=</span><span class="st">&#39;ruling&#39;</span>, freq<span class="op">=</span><span class="st">&#39;Y&#39;</span>)).size()</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply rolling window of 5 years to smooth the data</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>rolling_counts <span class="op">=</span> annual_counts.rolling(window<span class="op">=</span><span class="dv">5</span>, center<span class="op">=</span><span class="va">True</span>).mean()</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">5</span>))</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>annual_counts.plot(alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">&#39;Annual Counts&#39;</span>)  <span class="co"># Original data</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>rolling_counts.plot(color<span class="op">=</span><span class="st">&#39;red&#39;</span>, label<span class="op">=</span><span class="st">&#39;5-Year Rolling Average&#39;</span>)  <span class="co"># Smoothed data</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Number of Exempt Organizations Over Time (According to Ruling Date)&#39;</span>)</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Ruling Date (Year)&#39;</span>)</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Number of EINs&#39;</span>)</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>/var/folders/79/jdv69xcs22z7cyxln5rsbzzh0000gn/T/ipykernel_63172/1108986454.py:8: FutureWarning:
@@ -6810,15 +6786,15 @@ Figure 2: Trend Analysis of Ruling Dates for Exempt Organizations
 <section id="asset-income-revenue-amounts" class="level3">
 <h3 class="anchored" data-anchor-id="asset-income-revenue-amounts">4.4.1. Asset, Income &amp; Revenue Amounts</h3>
 <p>Data Values Note: Some values are negative. Documentation confirmed this is a possibility but lacks formal interpretation - https://www.irs.gov/pub/irs-soi/eo-info.pdf</p>
-<div id="cell-35" class="cell" data-execution_count="16">
+<div id="cell-33" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select financial columns.</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>financial_columns <span class="op">=</span> [<span class="st">&#39;asset_amt&#39;</span>, <span class="st">&#39;income_amt&#39;</span>, <span class="st">&#39;revenue_amt&#39;</span>]</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show stats.</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;Financial Amount Summary Stats:&quot;</span>))</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[financial_columns].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select financial columns</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>financial_columns <span class="op">=</span> [<span class="st">&#39;asset_amt&#39;</span>, <span class="st">&#39;income_amt&#39;</span>, <span class="st">&#39;revenue_amt&#39;</span>]</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show stats</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;Financial Amount Summary Stats:&quot;</span>))</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[financial_columns].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display cell-output-markdown">
 <p>Financial Amount Summary Stats:</p>
@@ -6897,15 +6873,15 @@ Figure 2: Trend Analysis of Ruling Dates for Exempt Organizations
 <section id="asset-income-codes" class="level3">
 <h3 class="anchored" data-anchor-id="asset-income-codes">4.4.2. Asset &amp; Income Codes</h3>
 <p><strong>Action item:</strong> find documentation that maps asset and income codes.</p>
-<div id="cell-37" class="cell" data-execution_count="17">
+<div id="cell-35" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select financial code columns.</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>financial_columns <span class="op">=</span> [<span class="st">&#39;asset_cd&#39;</span>, <span class="st">&#39;income_cd&#39;</span>]</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show stats.</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;Financial Code Summary Stats:&quot;</span>))</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[financial_columns].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select financial code columns</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>financial_columns <span class="op">=</span> [<span class="st">&#39;asset_cd&#39;</span>, <span class="st">&#39;income_cd&#39;</span>]</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show stats</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;Financial Code Summary Stats:&quot;</span>))</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[financial_columns].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display cell-output-markdown">
 <p>Financial Code Summary Stats:</p>
@@ -6978,15 +6954,15 @@ Figure 2: Trend Analysis of Ruling Dates for Exempt Organizations
 <p>Codes within the dataset such as filing_req_cd and pf_filing_req_cd may indicate the filing requirements, which can help assess compliance with IRS reporting standards, a proxy for transparency.</p>
 <p>TAX_PERIOD, ACCT_PD: Reviewing the tax period and accounting period using tax_period and acct_pd columns may offer insights into the timeliness and regularity of financial reporting.</p>
 <p><strong>Action item:</strong> find documentation that maps filing_req_cd, pf_filing_req_cd, and acct_pd codes.</p>
-<div id="cell-39" class="cell" data-execution_count="21">
+<div id="cell-37" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select filing columns.</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>filing_columns <span class="op">=</span> [<span class="st">&#39;filing_req_cd&#39;</span>, <span class="st">&#39;pf_filing_req_cd&#39;</span>,<span class="st">&#39;tax_period&#39;</span>, <span class="st">&#39;acct_pd&#39;</span>]</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show stats.</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;Tax Filing Code Summary Stats:&quot;</span>))</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[filing_columns].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select filing columns</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>filing_columns <span class="op">=</span> [<span class="st">&#39;filing_req_cd&#39;</span>, <span class="st">&#39;pf_filing_req_cd&#39;</span>,<span class="st">&#39;tax_period&#39;</span>, <span class="st">&#39;acct_pd&#39;</span>]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show stats</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f&quot;Tax Filing Code Summary Stats:&quot;</span>))</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>df_reg_giv_irs_eo1[filing_columns].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display cell-output-markdown">
 <p>Tax Filing Code Summary Stats:</p>
